@@ -1,0 +1,7 @@
+create table if not exists 'daily' (updatetime integer primary key NOT NULL,todaybegin real,todayend real,todayhigh real,todaylow real,volume integer,turnover real);
+create table if not exists 'lastdaydate'(recod integer primary key NOT NULL,lastdaydate integer);
+create table if not exists 'lastdaydata'(code integer primary key NOT NULL,volume integer);
+select lastdaydate from \'lastdaydate\' where recod=1 order by lastdaydate [desc];
+update \'list\' set name=\'{0}\' where code={1};
+insert/replace into \'{0}\'(updatetime,todaybegin,todayend,todayhigh,todaylow,volume,turnover) values({1},{2},{3},{4},{5},{6},{7});
+select * from 'lastdaydata'  order by meanincome desc;
