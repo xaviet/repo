@@ -18,20 +18,20 @@ detect_indent_width=false
 indent_mode=3
 
 [project]
-name=ofpa.geany
-base_path=/opt/repo/devboard/ofpa
+name=ofpa
+base_path=/opt/github/repo/ofpa/
 description=
 file_patterns=
 
 [long line marker]
 long_line_behaviour=1
-long_line_column=72
+long_line_column=69
 
 [files]
 current_page=0
 
 [VTE]
-last_dir=/opt/repo/devboard/ofpa/ctrlr
+last_dir=/opt/repo/devboard/ofpa
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
