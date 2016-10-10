@@ -314,7 +314,7 @@ struct ofp_packet_in
   *2 个全零填充字节，然后是以太网帧，其长度是根据 header.length 推断。
   *以太网帧前填充的字节，确保以太网报头后的 IP 头部（如果有的话）是 32 位
   */
-  //uint8_t pad[2]; /* 对齐 64 位+ 16 位 */
+  //uint8_t pad[2]; /* 对齐 n*64 位+ 16 位 */
   //uint8_t data[0]; /*以太网帧 */
 }__attribute((aligned(1)));
 

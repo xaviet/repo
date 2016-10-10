@@ -155,20 +155,55 @@ int ofpMsgFlowMod(struct ofp_flow_mod* v_pmsg,struct td_linkedlistNode* v_linkli
   return(0);
 }
 
-int ofpMsgPacketIn(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v_linklistNode)
+struct td_ptnapiPort* ofpGetPortDataFromId(uint32_t v_id)
 {
-  logStr("ofp Msg Packet In",1);
-  struct ofp_packet_in* t_pOfp=NULL;
-  int t_len=0;
+  struct td_ptnapiPort* t_port=NULL;
   int t_i=0;
-  t_pOfp=(struct ofp_packet_in*)malloc(def_stringBuff);
-  memset(t_pOfp,0,def_stringBuff);
-  t_len+=sizeof(struct ofp_packet_in);
-  
-  
+  for(t_i=0;t_i<def_ptnapiPortMax;t_i++)
+  {
+    if(g_ptnapiData.port[t_i].portId==v_id)
+    {
+      t_port=&(g_ptnapiData.port[t_i]);
+      break;
+    }
+  }
+  return(t_port);
+}
 
-  ofpMsgHeader(t_pOfp,OFPT_PACKET_IN,t_len,v_pmsg->header.xid);
-  ofpSocketLinkListPut(g_pSocketLinkList,v_linklistNode->m_handle,def_SocketTx,0,(void*)(t_pOfp),t_len,0,0);
+int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v_linklistNode)
+{
+  logStr("ofp Msg Packet In Lldp",1);
+  struct ofp_packet_in* t_pOfpPacketIn=NULL;
+  struct ofp_packet_head* t_pPacketHead=NULL;
+  int t_len=0;
+  struct td_ptnapiPort* t_pPort=NULL;
+  t_pPort=ofpGetPortDataFromId(v_pmsg->in_port);
+  if((t_pPort==NULL)||(t_pPort->peerNeId==0)||(t_pPort->peerPortId==0))
+  {
+    return(0);
+  }
+  t_pOfpPacketIn=(struct ofp_packet_in*)malloc(def_stringBuff);
+  memset(t_pOfpPacketIn,0,def_stringBuff);
+  t_len+=(sizeof(struct ofp_packet_in)%8==0)?(sizeof(struct ofp_packet_in)+2):(sizeof(struct ofp_packet_in));
+  t_pOfpPacketIn->buffer_id=swapEndian32(0xffffffff); 
+  t_pOfpPacketIn->total_len=swapEndian16(t_len-sizeof(struct ofp_packet_in)-2);
+  t_pOfpPacketIn->reason=0x01;  // OFPR_ACTION
+  t_pOfpPacketIn->table_id=0x00;
+  t_pOfpPacketIn->cookie=swapEndian64(0x0000000000000000LL);
+  t_pOfpPacketIn->match.type=swapEndian16(0x0001);  // OFPMT_OXM
+  t_pOfpPacketIn->match.length=swapEndian16(0x000c);
+  t_pOfpPacketIn->match.oxm_fields[0]=0x80;
+  t_pOfpPacketIn->match.oxm_fields[1]=0x00;
+  t_pOfpPacketIn->match.oxm_fields[2]=0x00;
+  t_pOfpPacketIn->match.oxm_fields[3]=0x04;
+  t_pOfpPacketIn->match.value=swapEndian32(t_pPort->portId);
+  t_pPacketHead=(void*)((int)t_pOfpPacketIn+t_len);
+  t_len+=sizeof(struct ofp_packet_head);
+  t_pPacketHead->
+  
+  ofpMsgHeader(t_pOfpPacketIn,OFPT_PACKET_IN,t_len,v_pmsg->header.xid);
+  ofpSocketLinkListPut(g_pSocketLinkList,v_linklistNode->m_handle,def_SocketTx,0,(void*)(t_pOfpPacketIn),t_len,0,0);
+
   return(0);
 }
 
@@ -181,7 +216,7 @@ int ofpMsgPacketOut(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v_li
   t_type=swapEndian16(t_packetHead->ethType);
   switch(t_type)
   {
-    def_switch(OFP_ETH_TYPE_LLDP,ofpMsgPacketIn(v_pmsg,v_linklistNode));
+    def_switch(OFP_ETH_TYPE_LLDP,ofpMsgPacketInLldp(v_pmsg,v_linklistNode));
     default:
           break;
   }
