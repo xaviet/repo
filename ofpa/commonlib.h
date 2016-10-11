@@ -140,4 +140,25 @@ int mac6CharsFrom6Ints(char v_ch[6],int v_int[6])
   return(0);
 }
 
+int setMacAddress(uint8_t* v_mac,uint8_t v_a0,uint8_t v_a1,uint8_t v_a2,uint8_t v_a3,uint8_t v_a4,uint8_t v_a5)
+{
+  *((uint8_t*)(v_mac+0))=v_a0;
+  *((uint8_t*)(v_mac+1))=v_a1;
+  *((uint8_t*)(v_mac+2))=v_a2;
+  *((uint8_t*)(v_mac+3))=v_a3;
+  *((uint8_t*)(v_mac+4))=v_a4;
+  *((uint8_t*)(v_mac+5))=v_a5;
+  return(0);
+}
+
+int idToMac(uint8_t* vChar,int* vInt)
+{
+  uint8_t* tPValue=vChar;
+  *tPValue=0x48;
+  tPValue=(uint8_t*)((int)vChar+1);
+  *tPValue=0xdf;
+  tPValue=(uint8_t*)((int)vChar+2);
+  memcpy(tPValue,vInt,4); 
+  return(0);
+}
 #endif
