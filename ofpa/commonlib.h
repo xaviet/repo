@@ -43,7 +43,7 @@ int senseBigEndian(void)
   return(t_rt);
 }
 
-int memMon(char* v_p,uint v_i)
+int memDisp(char* v_p,uint v_i)
 {
   int t_i=0;
   for(t_i=0;t_i<v_i;t_i++)
