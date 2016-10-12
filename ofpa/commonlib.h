@@ -43,6 +43,21 @@ int senseBigEndian(void)
   return(t_rt);
 }
 
+int memMon(char* v_p,uint v_i)
+{
+  int t_i=0;
+  for(t_i=0;t_i<v_i;t_i++)
+  {
+    if(t_i%8==0)
+    {
+      printf("\n");
+    }
+    printf("%02x ",*(v_p+t_i));
+  }
+  printf("\n");
+  return(0);
+}
+
 int logStr(const char v_chars[def_stringBuff],int v_rt)
 {
 #ifdef def_debug
@@ -161,4 +176,5 @@ int idToMac(uint8_t* vChar,int* vInt)
   memcpy(tPValue,vInt,4); 
   return(0);
 }
+
 #endif

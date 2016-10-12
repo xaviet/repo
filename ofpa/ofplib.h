@@ -30,8 +30,9 @@
 #define DESC_STR_LEN 256
 
 #define OFP_VERSION13 0x04
-
 #define OFP_ETH_TYPE_LLDP 0x88cc
+#define OFP_DATAPATHIDMASK 0x48df1c0000000000LL 
+#define OFP_DATAPATHIDPREFIX "dpid:" // lldp chassis id
 
 enum ofp_type
 {

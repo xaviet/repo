@@ -249,8 +249,10 @@ int ptnapiLldpData(struct td_linkedlistNode* v_linklistNode,void* v_p)
   int t_intValue=0;
   int t_portNo=0;
   char* t_strRegex=NULL;
-  int t_iMac[6]={0};
-  if((int)(strstr((char*)v_p,(char*)(v_linklistNode->m_pbuff))))
+  int t_iMac[6]={0};  
+  int t_intNeighbourNone=0;
+  t_intNeighbourNone=(int)(strstr((char*)v_p,def_ptnapiLldpNeighbourNone));
+  if(t_intNeighbourNone||(int)(strstr((char*)v_p,def_ptnapiLldpNeighbourExist)))
   {
     t_strRegex=regexGetLine((char*)v_p,"eth/ge\\.[0-9][0-9]*\\.[0-9][0-9]*");
     if(t_strRegex!=0)
@@ -267,7 +269,7 @@ int ptnapiLldpData(struct td_linkedlistNode* v_linklistNode,void* v_p)
       g_ptnapiData.port[t_portNo-1].peerPortId=0;
       memset(&(g_ptnapiData.port[t_portNo-1].peerPortMac),0,6);
       memset(&(g_ptnapiData.port[t_portNo-1].peerPortName),0,16);
-      if(t_strRegex!=0)
+      if(t_intNeighbourNone)
       {
         logStr("ptnapi this Port Lldp is not exist neighbour",1);
         return(1);

@@ -91,7 +91,7 @@ int ofpMsgFeaturesRequest(struct ofp_hello* v_pmsg,struct td_linkedlistNode* v_l
   struct ofp_switch_features* t_pOfp=NULL;
   int t_len=sizeof(struct ofp_switch_features);
   t_pOfp=(struct ofp_switch_features*)malloc(sizeof(struct ofp_switch_features));
-  t_pOfp->datapath_id=swapEndian64(((uint64_t)(g_ptnapiData.neId)&0x0000000000ffffffLL)|0x000048df1c000000LL);  //system name
+  t_pOfp->datapath_id=swapEndian64(((uint64_t)(g_ptnapiData.neId)&0x00000000ffffffffLL)|OFP_DATAPATHIDMASK);
   t_pOfp->n_buffers=swapEndian32(0x00000001);
   t_pOfp->n_tables=0x08;
   t_pOfp->auxiliary_id=0x0;
@@ -164,7 +164,6 @@ struct td_ptnapiPort* ofpGetPortDataFromId(uint32_t v_id)
     if(g_ptnapiData.port[t_i].portId==v_id)
     {
       t_port=&(g_ptnapiData.port[t_i]);
-      break;
     }
   }
   return(t_port);
@@ -177,16 +176,15 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
   struct ofp_packet_head* t_pPacketHead=NULL;
   struct ofp_lldp_tlv* t_pLldpTlv=NULL;
   uint8_t * t_pLldpTlvValue=NULL;
-  int t_len=0;
+  uint8_t t_len=0;
   struct td_ptnapiPort* t_pPort=NULL;
   t_pPort=ofpGetPortDataFromId(v_pmsg->actions.port);
-  printf("\n%08x\n",v_pmsg->actions.port);printf("\n%08x\n",t_pPort->portId);
+  printf("\n%08x\n",(int)t_pPort);printf("\n%08x\n",t_pPort->portId);
   printf("\n%08x\n",t_pPort->peerPortId);printf("\n%08x\n",t_pPort->peerNeId);
   if((t_pPort==NULL)||(t_pPort->peerNeId==0)||(t_pPort->peerPortId==0))
   {
     return(0);
   }
-  pause();
   t_pOfpPacketIn=(struct ofp_packet_in*)malloc(def_stringBuff);
   memset(t_pOfpPacketIn,0,def_stringBuff);
   t_len+=(sizeof(struct ofp_packet_in)%8==0)?(sizeof(struct ofp_packet_in)+2):(sizeof(struct ofp_packet_in));
@@ -211,32 +209,30 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
   t_pLldpTlv=(void*)((int)t_pOfpPacketIn+t_len);;
   t_len+=sizeof(struct ofp_lldp_tlv);
   t_pLldpTlv->tlvType=0x02;   // chassis
-  t_pLldpTlv->tlvLen=0x07;
-  t_len+=sizeof(struct ofp_lldp_tlv);
-  t_pLldpTlvValue=(uint8_t*)((int)t_pOfpPacketIn+t_len);
-  *t_pLldpTlvValue=0x04;
-  t_len++;
-  t_pLldpTlvValue=(uint8_t*)((int)t_pOfpPacketIn+t_len);
-  idToMac(t_pLldpTlvValue,&(t_pPort->peerNeId));
-  t_len+=6;
-  
-  t_pLldpTlv=(void*)((int)t_pOfpPacketIn+t_len);;
-  t_len+=sizeof(struct ofp_lldp_tlv);
-  t_pLldpTlv->tlvType=0x04;   // port
-  t_pLldpTlv->tlvLen=0x08;
-  t_len+=sizeof(struct ofp_lldp_tlv);
+  t_pLldpTlv->tlvLen=t_len;
   t_pLldpTlvValue=(uint8_t*)((int)t_pOfpPacketIn+t_len);
   *t_pLldpTlvValue=0x07;
   t_len++;
   t_pLldpTlvValue=(uint8_t*)((int)t_pOfpPacketIn+t_len);
-  memcpy(t_pLldpTlvValue,(char*)&(t_pPort->peerPortName),7);
-  t_len+=7;
+  sprintf((char*)t_pLldpTlvValue,"%s%016llx",OFP_DATAPATHIDPREFIX,((uint64_t)(t_pPort->peerNeId)&0x00000000ffffffffLL)|OFP_DATAPATHIDMASK);
+  t_len+=strlen((char*)t_pLldpTlvValue);
+  t_pLldpTlv->tlvLen=t_len-t_pLldpTlv->tlvLen;
+  
+  t_pLldpTlv=(void*)((int)t_pOfpPacketIn+t_len);;
+  t_len+=sizeof(struct ofp_lldp_tlv);
+  t_pLldpTlv->tlvType=0x04;   // port
+  t_pLldpTlv->tlvLen=0x05;
+  t_pLldpTlvValue=(uint8_t*)((int)t_pOfpPacketIn+t_len);
+  *t_pLldpTlvValue=0x02;
+  t_len++;
+  t_pLldpTlvValue=(uint8_t*)((int)t_pOfpPacketIn+t_len);
+  *((int*)t_pLldpTlvValue)=t_pPort->peerPortId;
+  t_len+=4;
   
   t_pLldpTlv=(void*)((int)t_pOfpPacketIn+t_len);;
   t_len+=sizeof(struct ofp_lldp_tlv);
   t_pLldpTlv->tlvType=0x06;   // ttl
   t_pLldpTlv->tlvLen=0x02;
-  t_len+=sizeof(struct ofp_lldp_tlv);
   t_pLldpTlvValue=(uint8_t*)((int)t_pOfpPacketIn+t_len);
   *t_pLldpTlvValue=0x00;
   t_len++;
@@ -278,7 +274,6 @@ int ofpSocketRxProcess(struct td_linkedlistNode* v_linklistNode,void* v_p,int v_
   struct ofp_header* t_pOfpHeader=v_p;
   while(v_len>t_len)
   {
-    t_len+=t_pOfpHeader->length;
     t_ofpType=t_pOfpHeader->type;
     logStr("ofp Socket Rx Ofp Type: ",0);logInt(t_ofpType,1);
     switch(t_ofpType)
@@ -291,7 +286,8 @@ int ofpSocketRxProcess(struct td_linkedlistNode* v_linklistNode,void* v_p,int v_
       default:
           break;
     }
-    t_pOfpHeader=(struct ofp_header*)((int)t_pOfpHeader+t_len);
+    t_len+=(int)swapEndian16(t_pOfpHeader->length);
+    t_pOfpHeader=(struct ofp_header*)((int)v_p+t_len);
   }
   return(0);
 }
