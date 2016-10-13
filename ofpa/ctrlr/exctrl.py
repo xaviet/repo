@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
+"""/usr/bin/ryu-manager
 Usage example
 
 1. Join switches (use your favorite method):
@@ -36,34 +36,28 @@ class exapp(simple_switch_13.SimpleSwitch13):
   _CONTEXTS = {'wsgi': WSGIApplication,}
 
   def __init__(self, *args, **kwargs):
-    LOG.debug('*************************exapp-__init__')
     super(exapp, self).__init__(*args, **kwargs)
     wsgi = kwargs['wsgi']
     wsgi.register(exctrl,{ex_instance_name : self})
 
 class exctrl(ControllerBase):
   def __init__(self, req, link, data, **config):
-    LOG.debug('*************************exctrl-__init__')
     super(exctrl, self).__init__(req, link, data, **config)
-    LOG.debug('*************************%s/html/' % PATH)
     self.static_app = DirectoryApp('%s/html/' % PATH)
     #self.exapp = data[ex_instance_name]
 
   @route('exctrl', '/exctrl/info', methods=['GET'])
   def info(self, req, **kwargs):
-    LOG.debug('*************************exctrl-info')
     body = json.dumps([1,2,3,4,5,6,7,8])
     return(Response(content_type='application/json', body=body))
   
   @route('exctrl', '/exctrl/f22', methods=['GET'])
   def f22(self, req, **kwargs):
-    LOG.debug('*************************exctrl-f22')
     body = json.dumps([1,2])
     return(Response(content_type='application/json', body=body))
   
   @route('exctrl', '/exctrl/{filename:.*}')
   def static_handler(self, req, **kwargs):
-    LOG.debug('*************************exctrl-static_handler')
     if kwargs['filename']:
       req.path_info = kwargs['filename']
     return(self.static_app(req))

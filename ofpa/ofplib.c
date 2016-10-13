@@ -179,8 +179,6 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
   uint8_t t_len=0;
   struct td_ptnapiPort* t_pPort=NULL;
   t_pPort=ofpGetPortDataFromId(v_pmsg->actions.port);
-  printf("\n%08x\n",(int)t_pPort);printf("\n%08x\n",t_pPort->portId);
-  printf("\n%08x\n",t_pPort->peerPortId);printf("\n%08x\n",t_pPort->peerNeId);
   if((t_pPort==NULL)||(t_pPort->peerNeId==0)||(t_pPort->peerPortId==0))
   {
     return(0);
@@ -189,7 +187,6 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
   memset(t_pOfpPacketIn,0,def_stringBuff);
   t_len+=(sizeof(struct ofp_packet_in)%8==0)?(sizeof(struct ofp_packet_in)+2):(sizeof(struct ofp_packet_in));
   t_pOfpPacketIn->buffer_id=swapEndian32(0xffffffff); 
-  t_pOfpPacketIn->total_len=swapEndian16(t_len-sizeof(struct ofp_packet_in)-2);
   t_pOfpPacketIn->reason=0x01;  // OFPR_ACTION
   t_pOfpPacketIn->table_id=0x00;
   t_pOfpPacketIn->cookie=swapEndian64(0x0000000000000000LL);
@@ -245,9 +242,11 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
   t_pLldpTlv->tlvType=0x00;   // end
   t_pLldpTlv->tlvLen=0x00;
   
-  ofpMsgHeader(t_pOfpPacketIn,OFPT_PACKET_IN,t_len,v_pmsg->header.xid);
+  t_len=(t_len<102)?102:t_len;
+  t_pOfpPacketIn->total_len=swapEndian16(t_len-42);
+  ofpMsgHeader(t_pOfpPacketIn,OFPT_PACKET_IN,t_len,0);
   ofpSocketLinkListPut(g_pSocketLinkList,v_linklistNode->m_handle,def_SocketTx,0,(void*)(t_pOfpPacketIn),t_len,0,0);
-
+  
   return(0);
 }
 
