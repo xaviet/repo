@@ -45,7 +45,7 @@ int ofpaInitIpAddress(int v_argc,char *v_argv[])
 struct td_linkedlist* ofpaInitList()
 {
   struct td_linkedlist* t_pList=NULL;
-  t_pList=(struct td_linkedlist*)malloc(sizeof(struct td_linkedlist));;
+  t_pList=(struct td_linkedlist*)malloc(sizeof(struct td_linkedlist));
   t_pList->m_phead=t_pList->m_ptail=NULL;
   return(t_pList); 
 }
@@ -273,6 +273,13 @@ int ofpaDevMock()
   return(0);
 }
 
+int ofpaDevSocketOptCodeLldpInquiry(struct td_linkedlistNode* v_pMsg)
+{
+  logStr("ofpa Dev Socket OptCode Lldp Inquiry(portname) :",1);logStr(v_pMsg->m_pbuff,1);
+  ptnapiLldpSignleInquery(v_pMsg->m_pbuff);
+  return(0);
+}
+
 int ofpaDevSocket(struct td_linkedlistNode* v_pMsg)
 {
   logStr("ofpa Dev Socket optcode: ",0);logInt(v_pMsg->m_optcode,1);
@@ -280,6 +287,7 @@ int ofpaDevSocket(struct td_linkedlistNode* v_pMsg)
   {
     def_switch(def_ofpaDevSocketOptCodeLogin,ofpaDevSocketOptCodeLogin(g_pSocketLinkList,g_ptnapiSocketFd));
     def_switch(def_ofpaDevSocketOptCodeDefaultCfg,ofpaDevSocketOptCodeDefaultCfg(g_pSocketLinkList,g_ptnapiSocketFd));
+    def_switch(def_ofpaDevSocketOptCodeLldpInquiry,ofpaDevSocketOptCodeLldpInquiry(v_pMsg));
     default:
       break;    
   }
@@ -306,6 +314,13 @@ int ofpaCtrlrSocket(struct td_linkedlistNode* v_pMsg)
   return(0);
 }
 
+int ofpaLldpInquiry(struct td_linkedlistNode* v_pMsg)
+{
+  logStr("ofpa Lldp Inquiry (portname): ",1);logStr(v_pMsg->m_pbuff,1);
+  ofpaMsgPut(def_ofpaDevSocket,def_ofpaDevSocketOptCodeLldpInquiry,0,v_pMsg->m_pbuff,0);
+  return(0);
+}
+
 int ofpaLoop()
 {
   int t_rt=0;
@@ -326,6 +341,7 @@ int ofpaLoop()
       def_switch(def_ofpaDevSocket,ofpaDevSocket(t_pMsg));
       def_switch(def_ofpaCtrlrSocket,ofpaCtrlrSocket(t_pMsg));
       def_switch(def_ofpaLoopRun,ofpaLoopRun());
+      def_switch(def_ofpaLldpInquiry,ofpaLldpInquiry(t_pMsg));
       default:
         break;
     }

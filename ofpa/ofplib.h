@@ -332,4 +332,13 @@ struct ofp_lldp_tlv
   uint8_t tlvLen;
 }__attribute((aligned(1)));
 
+int ofpMsgPut(int v_msgId,int v_optcode,int v_status,void* v_p,int v_len)
+{
+  linkedlistPut(g_pMsgLinkList,v_msgId,v_optcode,v_status,v_p,v_len,0,0);
+  logStr("ofp Msg Put ID: ",0);logInt(v_msgId,1);
+  logStr("ofp Msg Put optcode: ",0);logInt(v_optcode,1);
+  logStr("ofp Msg Link List deep: ",0);logInt(linkedlistLength(g_pMsgLinkList),1);
+  return(0);
+}
+
 #endif

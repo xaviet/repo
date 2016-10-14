@@ -179,6 +179,13 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
   uint8_t t_len=0;
   struct td_ptnapiPort* t_pPort=NULL;
   t_pPort=ofpGetPortDataFromId(v_pmsg->actions.port);
+  
+  char* t_lldpPort=NULL;
+  t_lldpPort=(char*)malloc(16);
+  memcpy(t_lldpPort,t_pPort->portName,16);
+  logStr("ofpMsgPacketInLldp(portname): ",1);logStr(t_lldpPort,1);
+  ofpMsgPut(def_ofpaLldpInquiry,0,0,t_lldpPort,0);
+  
   if((t_pPort==NULL)||(t_pPort->peerNeId==0)||(t_pPort->peerPortId==0))
   {
     return(0);

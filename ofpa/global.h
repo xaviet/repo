@@ -39,10 +39,13 @@
 #define def_ofpaDevSocketOptCodeLogin 2003
 #define def_ofpaDevSocketOptCodeDefaultCfg 2004
 #define def_ofpaDevMock 2005
+#define def_ofpaDevSocketOptCodeLldpInquiry 2006
 
 #define def_ofpaCtrlrSocketInit 3001
 #define def_ofpaCtrlrSocket 3002
-#define def_ofpaCtrlrSocketOptCodeRx 3004
+#define def_ofpaCtrlrSocketOptCodeRx 3003
+
+#define def_ofpaLldpInquiry 4001
 
 #define def_ptnapiPortMax 16
 #define def_ptnapiLocalPortId 0xfffffffe
