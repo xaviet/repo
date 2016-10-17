@@ -79,10 +79,10 @@ int ofpaInit(int v_argc,char *v_argv[])
 
 int ofpaMsgPut(int v_msgId,int v_optcode,int v_status,void* v_p,int v_len)
 {
-  linkedlistPut(g_pMsgLinkList,v_msgId,v_optcode,v_status,v_p,v_len,0,0);
   logStr("ofpa Msg Put ID: ",0);logInt(v_msgId,1);
   logStr("ofpa Msg Put optcode: ",0);logInt(v_optcode,1);
   logStr("ofpa Msg Link List deep: ",0);logInt(linkedlistLength(g_pMsgLinkList),1);
+  linkedlistPut(g_pMsgLinkList,v_msgId,v_optcode,v_status,v_p,v_len,0,0);
   return(0);
 }
 
@@ -276,6 +276,7 @@ int ofpaDevMock()
 int ofpaDevSocketOptCodeLldpInquiry(struct td_linkedlistNode* v_pMsg)
 {
   logStr("ofpa Dev Socket OptCode Lldp Inquiry(portname) :",1);logStr(v_pMsg->m_pbuff,1);
+  printf("\n%08x\n",&(v_pMsg->m_pbuff));
   ptnapiLldpSignleInquery(v_pMsg->m_pbuff);
   return(0);
 }
@@ -283,6 +284,7 @@ int ofpaDevSocketOptCodeLldpInquiry(struct td_linkedlistNode* v_pMsg)
 int ofpaDevSocket(struct td_linkedlistNode* v_pMsg)
 {
   logStr("ofpa Dev Socket optcode: ",0);logInt(v_pMsg->m_optcode,1);
+  printf("\n%08x\n",&(v_pMsg->m_pbuff));
   switch(v_pMsg->m_optcode)
   {
     def_switch(def_ofpaDevSocketOptCodeLogin,ofpaDevSocketOptCodeLogin(g_pSocketLinkList,g_ptnapiSocketFd));
@@ -317,6 +319,7 @@ int ofpaCtrlrSocket(struct td_linkedlistNode* v_pMsg)
 int ofpaLldpInquiry(struct td_linkedlistNode* v_pMsg)
 {
   logStr("ofpa Lldp Inquiry (portname): ",1);logStr(v_pMsg->m_pbuff,1);
+  printf("\n%08x\n",&(v_pMsg->m_pbuff));
   ofpaMsgPut(def_ofpaDevSocket,def_ofpaDevSocketOptCodeLldpInquiry,0,v_pMsg->m_pbuff,0);
   return(0);
 }

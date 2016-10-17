@@ -362,8 +362,9 @@ int ptnapiLldpSignleInquery(char* v_portName)
   char* t_tempStr=NULL;
   t_tempStr=(char*)malloc(def_msgBuff);
   sprintf(t_tempStr,def_ptnapiLldpNeighbour,v_portName);
-  logStr("ptnapi Lldp Signle Inquery :",1);logStr(t_tempStr,1);
-  ptnapiSocketSessionInquery(g_pSocketLinkList,g_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,(int)ptnapiLldpData);  
+  logStr("ptnapi Lldp Signle Inquery (command):",1);logStr(t_tempStr,1);
+  ptnapiSocketSessionInquery(g_pSocketLinkList,g_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,(int)ptnapiLldpData); 
+  pause(); 
   return(0);  
 }
 

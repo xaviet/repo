@@ -169,6 +169,21 @@ struct td_ptnapiPort* ofpGetPortDataFromId(uint32_t v_id)
   return(t_port);
 }
 
+int ofpLldpInquery(struct td_ptnapiPort* v_pPort)
+{
+  char* t_lldpPort=NULL;
+  if((v_pPort>=&(g_ptnapiData.port[0]))&&(v_pPort<=&(g_ptnapiData.port[def_ptnapiPortMax])))
+  {
+    t_lldpPort=(char*)malloc(16);
+    memset(t_lldpPort,0,16);
+    memcpy(t_lldpPort,v_pPort->portName,16);
+    logStr("ofp Lldp Inquery (portname): ",1);logStr(t_lldpPort,1);
+    printf("\n%08x\n",t_lldpPort);
+    ofpMsgPut(def_ofpaLldpInquiry,0,0,t_lldpPort,0);
+  }
+  return(0);
+}
+
 int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v_linklistNode)
 {
   logStr("ofp Msg Packet In Lldp",1);
@@ -179,17 +194,14 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
   uint8_t t_len=0;
   struct td_ptnapiPort* t_pPort=NULL;
   t_pPort=ofpGetPortDataFromId(v_pmsg->actions.port);
-  
-  char* t_lldpPort=NULL;
-  t_lldpPort=(char*)malloc(16);
-  memcpy(t_lldpPort,t_pPort->portName,16);
-  logStr("ofpMsgPacketInLldp(portname): ",1);logStr(t_lldpPort,1);
-  ofpMsgPut(def_ofpaLldpInquiry,0,0,t_lldpPort,0);
+ 
+  ofpLldpInquery(t_pPort);
   
   if((t_pPort==NULL)||(t_pPort->peerNeId==0)||(t_pPort->peerPortId==0))
   {
     return(0);
   }
+  
   t_pOfpPacketIn=(struct ofp_packet_in*)malloc(def_stringBuff);
   memset(t_pOfpPacketIn,0,def_stringBuff);
   t_len+=(sizeof(struct ofp_packet_in)%8==0)?(sizeof(struct ofp_packet_in)+2):(sizeof(struct ofp_packet_in));
