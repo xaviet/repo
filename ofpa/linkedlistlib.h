@@ -95,11 +95,9 @@ int linkedlistNodeFree(struct td_linkedlistNode* v_plinkedlistNode)
 {
   if(v_plinkedlistNode->m_pbuff!=NULL)
   {
-    printf("\n%08x\n",v_plinkedlistNode->m_pbuff);
     free(v_plinkedlistNode->m_pbuff);
     v_plinkedlistNode->m_pbuff=NULL;
   }
-  printf("\n%08x\n",v_plinkedlistNode);
   free(v_plinkedlistNode);
   return(0);
 }

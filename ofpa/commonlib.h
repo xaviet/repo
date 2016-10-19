@@ -27,10 +27,12 @@
 
 #ifndef def_debug
 #define def_debug
-//#undef def_debug
 #endif
+//#undef def_debug
 
 #define def_stringBuff 65535
+
+time_t g_startTime=0;
 
 int senseBigEndian(void)
 {
@@ -43,7 +45,7 @@ int senseBigEndian(void)
   return(t_rt);
 }
 
-int memDisp(char* v_p,uint v_i)
+int memDisp(void* v_p,uint v_i)
 {
   int t_i=0;
   for(t_i=0;t_i<v_i;t_i++)
@@ -52,7 +54,7 @@ int memDisp(char* v_p,uint v_i)
     {
       printf("\n");
     }
-    printf("%02x ",*(v_p+t_i));
+    printf("%02x ",(int)((char*)((int)v_p+t_i)));
   }
   printf("\n");
   return(0);

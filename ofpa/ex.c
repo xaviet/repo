@@ -12,12 +12,16 @@
 #include "regex.h"
 #include "commonlib.h"
 
+struct s
+{
+  char c[8];
+};
+
 int main()
 {
-  char s1[]="MAC  str:48df.3c00.010e";
-  char s2[16]={0};
-  int t_iMac[6]={0};
-  sscanf(s1,"%*s%*4s%2x%2x.%2x%2x.%2x%2x",&(t_iMac[0]),&(t_iMac[1]),&(t_iMac[2]),&(t_iMac[3]),&(t_iMac[4]),&(t_iMac[5]));
-  printf("%d",t_iMac[0]);
+  struct s s1;
+  strcpy(s1.c,"12345678");
+  memDisp(&s1,8);
+  
   return(0);
 }

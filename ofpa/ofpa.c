@@ -191,7 +191,7 @@ int ofpaSocketRx(struct td_linkedlistNode* v_pSocketLinkList)
       while(t_callbackLinklistNode(v_pSocketLinkList,t_pBuff,t_len)==0)
       {
         t_len+=ofpaSocketRxBuff(v_pSocketLinkList->m_handle,t_pBuff+t_len,def_stringBuff-t_len);
-        usleep(20000);
+        usleep(def_loopinterval);
       }
     }
     else if(t_len>0)
@@ -209,7 +209,7 @@ int ofpaSocketTx(struct td_linkedlistNode* v_pSocketLinkList)
   if(v_pSocketLinkList->m_length>0)
   {
     send(v_pSocketLinkList->m_handle,v_pSocketLinkList->m_pbuff,v_pSocketLinkList->m_length,0);
-    usleep(20000);
+    usleep(def_loopinterval);
   }
   return(0);
 }
@@ -276,7 +276,6 @@ int ofpaDevMock()
 int ofpaDevSocketOptCodeLldpInquiry(struct td_linkedlistNode* v_pMsg)
 {
   logStr("ofpa Dev Socket OptCode Lldp Inquiry(portname) :",1);logStr(v_pMsg->m_pbuff,1);
-  printf("\n%08x\n",&(v_pMsg->m_pbuff));
   ptnapiLldpSignleInquery(v_pMsg->m_pbuff);
   return(0);
 }
@@ -284,7 +283,6 @@ int ofpaDevSocketOptCodeLldpInquiry(struct td_linkedlistNode* v_pMsg)
 int ofpaDevSocket(struct td_linkedlistNode* v_pMsg)
 {
   logStr("ofpa Dev Socket optcode: ",0);logInt(v_pMsg->m_optcode,1);
-  printf("\n%08x\n",&(v_pMsg->m_pbuff));
   switch(v_pMsg->m_optcode)
   {
     def_switch(def_ofpaDevSocketOptCodeLogin,ofpaDevSocketOptCodeLogin(g_pSocketLinkList,g_ptnapiSocketFd));
@@ -319,8 +317,11 @@ int ofpaCtrlrSocket(struct td_linkedlistNode* v_pMsg)
 int ofpaLldpInquiry(struct td_linkedlistNode* v_pMsg)
 {
   logStr("ofpa Lldp Inquiry (portname): ",1);logStr(v_pMsg->m_pbuff,1);
-  printf("\n%08x\n",&(v_pMsg->m_pbuff));
-  ofpaMsgPut(def_ofpaDevSocket,def_ofpaDevSocketOptCodeLldpInquiry,0,v_pMsg->m_pbuff,0);
+  char* t_chars=NULL;
+  t_chars=(char*)malloc(16);
+  memset(t_chars,0,16);
+  memcpy(t_chars,v_pMsg->m_pbuff,16);
+  ofpaMsgPut(def_ofpaDevSocket,def_ofpaDevSocketOptCodeLldpInquiry,0,t_chars,0);
   return(0);
 }
 
@@ -331,9 +332,8 @@ int ofpaLoop()
   while((t_pMsg=ofpaLinkListGet(g_pMsgLinkList))!=NULL)
   {
 #ifdef def_debug    
-    usleep(500000);
+    usleep(def_loopinterval);
 #endif
-    usleep(1);
     switch(t_pMsg->m_handle)
     {
       def_switch(def_ofpaLoopStart,ofpaLoopStart());

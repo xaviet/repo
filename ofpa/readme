@@ -1,0 +1,3 @@
+@/usr/lib/python3.4/site-packages/ryu/app/wsgi.py
+-self.ws.send(unicode(message))
++self.ws.send(str(message))

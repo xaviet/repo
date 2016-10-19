@@ -18,6 +18,8 @@
 #undef def_mockDev
 //#define def_mockDev
 
+#define def_loopinterval 8192
+
 #define def_ipaddressBuff 15
 #define def_msgBuff 2048
 
