@@ -65,6 +65,7 @@ int logStr(const char v_chars[def_stringBuff],int v_rt)
 #ifdef def_debug
   time_t t_time=0;
   t_time=time(&t_time);
+  t_time-=g_startTime;
   if(strlen(v_chars)>0)
   {
     printf("[%012ld]  %s",t_time,v_chars);
