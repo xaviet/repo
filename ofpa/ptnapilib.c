@@ -363,7 +363,14 @@ int ptnapiLldpSignleInquery(char* v_portName)
   t_tempStr=(char*)malloc(def_msgBuff);
   sprintf(t_tempStr,def_ptnapiLldpNeighbour,v_portName);
   logStr("ptnapi Lldp Signle Inquery (portName):",1);logStr(v_portName,1);
-  ptnapiSocketSessionInquery(g_pSocketLinkList,g_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,(int)ptnapiLldpData); 
+  if(linkedlistLength(g_pSocketLinkList)<=32)
+  {
+    ptnapiSocketSessionInquery(g_pSocketLinkList,g_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,(int)ptnapiLldpData); 
+  }
+  else
+  {
+    logStr("ptnapi Lldp Signle Inquery linkedlistLength big than 32",1);
+  }
   return(0);  
 }
 
