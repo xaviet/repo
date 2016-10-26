@@ -1,7 +1,13 @@
 @/usr/lib/python3.4/site-packages/ryu/app/wsgi.py
--self.ws.send(unicode(message))
-+self.ws.send(str(message))
+-174 self.ws.send(unicode(message))
++174 self.ws.send(str(message))
 
-@/usr/lib/python3.4/site-packages/ryu/app/wsgi.py
--for k in rep.iterkeys():
-+for k in iter(rep.keys()):
+@/contrib/tinyrpc/protocols/jsonrpc.py 
+-213 for k in rep.iterkeys():
++213 for k in iter(rep.keys()):
+
+@/usr/lib/python3.4/site-packages/ryu/controller/dpset.py
+-221 for port in self.port_state.get(dp.id, {}).values():
++25 import copy
++222 temp_port_state=copy.deepcopy(self.port_state.get(dp.id, {}))
++223 for port in temp_port_state.values():
