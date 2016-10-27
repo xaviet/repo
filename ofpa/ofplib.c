@@ -200,7 +200,7 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
   {
     return(0);
   }
-  
+
   t_pOfpPacketIn=(struct ofp_packet_in*)malloc(def_stringBuff);
   memset(t_pOfpPacketIn,0,def_stringBuff);
   t_len+=(sizeof(struct ofp_packet_in)%8==0)?(sizeof(struct ofp_packet_in)+2):(sizeof(struct ofp_packet_in));

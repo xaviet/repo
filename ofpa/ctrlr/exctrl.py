@@ -44,16 +44,16 @@ class exctrl(ControllerBase):
   def __init__(self, req, link, data, **config):
     super(exctrl, self).__init__(req, link, data, **config)
     self.static_app = DirectoryApp('%s/html/' % PATH)
-    #self.exapp = data[ex_instance_name]
+    self.exapp = data[ex_instance_name]
 
-  @route('exctrl', '/exctrl/info', methods=['GET'])
-  def info(self, req, **kwargs):
-    body = json.dumps([1,2,3,4,5,6,7,8])
+  @route('exctrl', '/exctrl/about', methods=['POST'])
+  def exAbout(self, req, **kwargs):
+    body = json.dumps('Xa@whnec by 20161111!')
     return(Response(content_type='application/json', body=body))
-  
-  @route('exctrl', '/exctrl/f22', methods=['GET'])
-  def f22(self, req, **kwargs):
-    body = json.dumps([1,2])
+    
+  @route('exctrl', '/exctrl/about', methods=['GET'])
+  def exAbout(self, req, **kwargs):
+    body = json.dumps('Xa@whnec by 20161111!')
     return(Response(content_type='application/json', body=body))
   
   @route('exctrl', '/exctrl/{filename:.*}')
