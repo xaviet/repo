@@ -131,7 +131,7 @@ uint64_t swapEndian64(const uint64_t v_int64)
 char* regexGetLine(const char* v_pOriginStr,const char* v_reg)
 {
   char* t_str=NULL;
-  t_str=(char*)malloc(def_stringBuff);
+  t_str=(char*)malloc(def_stringBuff);printf("\nm:%d  f:%d\n",mc++,mf);
   regex_t t_oRegex;
   regmatch_t t_match[1];
   const size_t t_nmatch=1;

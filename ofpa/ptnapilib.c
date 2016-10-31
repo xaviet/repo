@@ -107,7 +107,7 @@ int ptnapiLoginProcess(struct td_linkedlistNode* v_linklistNode,void* v_p,int v_
 int ptnapiSocketLinkListPut(struct td_linkedlist* v_pSocketLinkList,int v_ptnapiSocketFd,char* v_str,int v_direct,int v_function)
 {
   char* t_pBuff=NULL;
-  t_pBuff=(char*)malloc(def_msgBuff);
+  t_pBuff=(char*)malloc(def_msgBuff);printf("\nm:%d  f:%d\n",mc++,mf);
   strcpy(t_pBuff,v_str);
   linkedlistPut(v_pSocketLinkList,v_ptnapiSocketFd,v_direct,v_function,(void*)t_pBuff,strlen(t_pBuff),1,0);
   return(0);  
@@ -226,7 +226,7 @@ int ptnapiPortDataInquery(struct td_linkedlist* v_pSocketLinkList,int v_ptnapiSo
 {
   char t_tempChars[def_msgBuff]={0};
   char* t_tempStr=NULL;
-  t_tempStr=(char*)malloc(def_msgBuff);
+  t_tempStr=(char*)malloc(def_msgBuff);printf("\nm:%d  f:%d\n",mc++,mf);
   sprintf(t_tempChars,def_ptnapiPort,v_portNo);
   sprintf(t_tempStr,def_ptnapiPortData,t_tempChars);
   ptnapiSocketSessionInquery(v_pSocketLinkList,v_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,v_function);  
@@ -340,7 +340,7 @@ int ptnapiLldpInquery(struct td_linkedlist* v_pSocketLinkList,int v_ptnapiSocket
 {
   char t_tempChars[def_msgBuff]={0};
   char* t_tempStr=NULL;
-  t_tempStr=(char*)malloc(def_msgBuff);
+  t_tempStr=(char*)malloc(def_msgBuff);printf("\nm:%d  f:%d\n",mc++,mf);
   sprintf(t_tempChars,def_ptnapiPort,v_portNo);
   sprintf(t_tempStr,def_ptnapiLldpNeighbour,t_tempChars);
   ptnapiSocketSessionInquery(v_pSocketLinkList,v_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,v_function);  
@@ -360,7 +360,7 @@ int ptnapiLldpAllInquery(struct td_linkedlist* v_pSocketLinkList,int v_ptnapiSoc
 int ptnapiLldpSignleInquery(char* v_portName)
 {
   char* t_tempStr=NULL;
-  t_tempStr=(char*)malloc(def_msgBuff);
+  t_tempStr=(char*)malloc(def_msgBuff);printf("\nm:%d  f:%d\n",mc++,mf);
   sprintf(t_tempStr,def_ptnapiLldpNeighbour,v_portName);
   logStr("ptnapi Lldp Signle Inquery (portName):",1);logStr(v_portName,1);
   if(linkedlistLength(g_pSocketLinkList)<=32)

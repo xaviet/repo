@@ -17,6 +17,8 @@
 int main(int argc,char *argv[])
 {
   int t_rt=0;
+  mc=0;
+  mf=0;
   g_startTime=time(&g_startTime);
   t_rt=ofpaInit(argc,argv);
   def_rtNonZeroAbnormal("ofpa init Fail! code: ");

@@ -76,7 +76,7 @@ int ofpMsgHello(struct ofp_hello* v_pmsg,struct td_linkedlistNode* v_linklistNod
   logStr("ofp Msg Hello",1);
   struct ofp_hello* t_pOfp=NULL;
   int t_len=sizeof(struct ofp_hello);
-  t_pOfp=(struct ofp_hello*)malloc(sizeof(struct ofp_hello));
+  t_pOfp=(struct ofp_hello*)malloc(sizeof(struct ofp_hello));printf("\nm:%d  f:%d\n",mc++,mf);
   t_pOfp->elements.type=swapEndian16(0x0001);
   t_pOfp->elements.length=swapEndian16(0x0008);
   t_pOfp->elements.bitmaps=swapEndian32(0x00000010);
@@ -90,7 +90,7 @@ int ofpMsgFeaturesRequest(struct ofp_hello* v_pmsg,struct td_linkedlistNode* v_l
   logStr("ofp Msg Features Request",1);
   struct ofp_switch_features* t_pOfp=NULL;
   int t_len=sizeof(struct ofp_switch_features);
-  t_pOfp=(struct ofp_switch_features*)malloc(sizeof(struct ofp_switch_features));
+  t_pOfp=(struct ofp_switch_features*)malloc(sizeof(struct ofp_switch_features));printf("\nm:%d  f:%d\n",mc++,mf);
   t_pOfp->datapath_id=swapEndian64(((uint64_t)(g_ptnapiData.neId)&0x00000000ffffffffLL)|OFP_DATAPATHIDMASK);
   t_pOfp->n_buffers=swapEndian32(0x00000001);
   t_pOfp->n_tables=0x08;
@@ -121,7 +121,7 @@ int ofpMPPortDesc(struct ofp_multipart_request* v_pmsg,struct td_linkedlistNode*
   struct ofp_multipart_reply* t_pOfp=NULL;
   int t_len=0;
   int t_i=0;
-  t_pOfp=(struct ofp_multipart_reply*)malloc(def_stringBuff);
+  t_pOfp=(struct ofp_multipart_reply*)malloc(def_stringBuff);printf("\nm:%d  f:%d\n",mc++,mf);
   memset(t_pOfp,0,def_stringBuff);
   t_len+=sizeof(struct ofp_multipart_reply);
   t_len+=ofpMPPortDescSingle((struct ofp_port*)((int)t_pOfp+t_len),&(g_ptnapiData.local));
@@ -174,7 +174,7 @@ int ofpLldpInquery(struct td_ptnapiPort* v_pPort)
   char* t_lldpPort=NULL;
   if((v_pPort>=&(g_ptnapiData.port[0]))&&(v_pPort<=&(g_ptnapiData.port[def_ptnapiPortMax])))
   {
-    t_lldpPort=(char*)malloc(16);
+    t_lldpPort=(char*)malloc(16);printf("\nm:%d  f:%d\n",mc++,mf);
     memset(t_lldpPort,0,16);
     memcpy(t_lldpPort,v_pPort->portName,16);
     logStr("ofp Lldp Inquery (portname): ",1);logStr(t_lldpPort,1);
@@ -201,7 +201,7 @@ int ofpMsgPacketInLldp(struct ofp_packet_out* v_pmsg,struct td_linkedlistNode* v
     return(0);
   }
 
-  t_pOfpPacketIn=(struct ofp_packet_in*)malloc(def_stringBuff);
+  t_pOfpPacketIn=(struct ofp_packet_in*)malloc(def_stringBuff);printf("\nm:%d  f:%d\n",mc++,mf);
   memset(t_pOfpPacketIn,0,def_stringBuff);
   t_len+=(sizeof(struct ofp_packet_in)%8==0)?(sizeof(struct ofp_packet_in)+2):(sizeof(struct ofp_packet_in));
   t_pOfpPacketIn->buffer_id=swapEndian32(0xffffffff); 
