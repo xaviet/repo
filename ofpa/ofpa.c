@@ -45,7 +45,7 @@ int ofpaInitIpAddress(int v_argc,char *v_argv[])
 struct td_linkedlist* ofpaInitList()
 {
   struct td_linkedlist* t_pList=NULL;
-  t_pList=(struct td_linkedlist*)malloc(sizeof(struct td_linkedlist));printf("\nm:%d  f:%d\n",mc++,mf);
+  t_pList=(struct td_linkedlist*)malloc(sizeof(struct td_linkedlist));memRecoder(t_pList,1,0,48);
   t_pList->m_phead=t_pList->m_ptail=NULL;
   return(t_pList); 
 }
@@ -318,7 +318,7 @@ int ofpaLldpInquiry(struct td_linkedlistNode* v_pMsg)
 {
   logStr("ofpa Lldp Inquiry (portname): ",1);logStr(v_pMsg->m_pbuff,1);
   char* t_chars=NULL;
-  t_chars=(char*)malloc(16);printf("\nm:%d  f:%d\n",mc++,mf);
+  t_chars=(char*)malloc(16);memRecoder(t_chars,1,0,321);
   memset(t_chars,0,16);
   memcpy(t_chars,v_pMsg->m_pbuff,16);
   ofpaMsgPut(def_ofpaDevSocket,def_ofpaDevSocketOptCodeLldpInquiry,0,t_chars,0);

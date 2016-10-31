@@ -25,11 +25,6 @@
 #include "arpa/inet.h"
 #include "regex.h"
 
-#ifndef def_debug
-#define def_debug
-#endif
-//#undef def_debug
-
 #define def_stringBuff 65535
 
 time_t g_startTime=0;
@@ -43,21 +38,6 @@ int senseBigEndian(void)
     t_rt=0;
   }
   return(t_rt);
-}
-
-int memDisp(void* v_p,uint v_i)
-{
-  int t_i=0;
-  for(t_i=0;t_i<v_i;t_i++)
-  {
-    if(t_i%8==0)
-    {
-      printf("\n");
-    }
-    printf("%02x ",(int)((char*)((int)v_p+t_i)));
-  }
-  printf("\n");
-  return(0);
 }
 
 int logStr(const char v_chars[def_stringBuff],int v_rt)
@@ -131,7 +111,7 @@ uint64_t swapEndian64(const uint64_t v_int64)
 char* regexGetLine(const char* v_pOriginStr,const char* v_reg)
 {
   char* t_str=NULL;
-  t_str=(char*)malloc(def_stringBuff);printf("\nm:%d  f:%d\n",mc++,mf);
+  t_str=(char*)malloc(def_stringBuff);memRecoder(t_str,1,0,119);
   regex_t t_oRegex;
   regmatch_t t_match[1];
   const size_t t_nmatch=1;
@@ -177,6 +157,21 @@ int idToMac(uint8_t* vChar,int* vInt)
   *tPValue=0xdf;
   tPValue=(uint8_t*)((int)vChar+2);
   memcpy(tPValue,vInt,4); 
+  return(0);
+}
+
+int memDisp(void* v_p,uint v_i)
+{
+  int t_i=0;
+  for(t_i=0;t_i<v_i;t_i++)
+  {
+    if(t_i%8==0)
+    {
+      printf("\n");
+    }
+    printf("%02x ",(int)((char*)((int)v_p+t_i)));
+  }
+  printf("\n");
   return(0);
 }
 

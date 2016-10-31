@@ -14,8 +14,7 @@
 
 #include "stdlib.h"
 #include "string.h"
-
-int mc,mf;
+#include "memrecoder.h"
 
 #define def_tdlinkedlistNodeDefault {0,0,0,NULL,0,0,0,NULL}
 struct td_linkedlistNode
@@ -39,7 +38,7 @@ struct td_linkedlist
 struct td_linkedlist* linkedlistCreate(void)
 {
   struct td_linkedlist* t_plinkedlist=NULL;
-  t_plinkedlist=(struct td_linkedlist*)malloc(sizeof(struct td_linkedlist));printf("\nm:%d  f:%d\n",mc++,mf);
+  t_plinkedlist=(struct td_linkedlist*)malloc(sizeof(struct td_linkedlist));memRecoder(t_plinkedlist,1,0,85);
   t_plinkedlist->m_phead=t_plinkedlist->m_ptail=NULL;
   return(t_plinkedlist);
 }
@@ -50,7 +49,7 @@ int linkedlistPut(struct td_linkedlist* v_plinkedlist,int v_handle,int v_optcode
   struct td_linkedlistNode* t_plinkedlistNode=NULL;
   if(v_plinkedlist!=NULL)
   {
-    t_plinkedlistNode=(struct td_linkedlistNode*)malloc(sizeof(struct td_linkedlistNode));printf("\nm:%d  f:%d\n",mc++,mf);
+    t_plinkedlistNode=(struct td_linkedlistNode*)malloc(sizeof(struct td_linkedlistNode));memRecoder(t_plinkedlistNode,1,0,96);
     t_plinkedlistNode->m_handle=v_handle;
     t_plinkedlistNode->m_optcode=v_optcode;
     t_plinkedlistNode->m_status=v_status;
@@ -97,10 +96,10 @@ int linkedlistNodeFree(struct td_linkedlistNode* v_plinkedlistNode)
 {
   if(v_plinkedlistNode->m_pbuff!=NULL)
   {
-    free(v_plinkedlistNode->m_pbuff);printf("\nm:%d  f:%d\n",mc,mf++);
+    free(v_plinkedlistNode->m_pbuff);memRecoder(v_plinkedlistNode->m_pbuff,0,1,0);
     v_plinkedlistNode->m_pbuff=NULL;
   }
-  free(v_plinkedlistNode);printf("\nm:%d  f:%d\n",mc,mf++);
+  free(v_plinkedlistNode);memRecoder(v_plinkedlistNode,0,1,0);
   return(0);
 }
 
@@ -110,7 +109,7 @@ int linkedlistDestory(struct td_linkedlist* v_plinkedlist)
   {
     linkedlistNodeFree(linkedlistGet(v_plinkedlist));
   }
-  free(v_plinkedlist);printf("\nm:%d  f:%d\n",mc,mf++);
+  free(v_plinkedlist);memRecoder(v_plinkedlist,0,1,0);
   return(0);
 }
 
