@@ -4,6 +4,8 @@
 """/usr/bin/ryu-manager
 Usage example
 
+mount -t nfs -o nolock 10.0.0.250:/opt/nfs /mnt/nfs
+
 1. Join switches (use your favorite method):
 $ mn --custom /opt/topo/ex.py --topo tree,depth=3 --switch ovs,protocols=OpenFlow13 --controller=remote,ip=10.0.0.250,port=6633 --mac
 
@@ -11,7 +13,8 @@ $ mn --custom /opt/topo/ex.py --topo tree,depth=3 --switch ovs,protocols=OpenFlo
 $ PYTHONPATH=. /usr/bin/ryu-manager --verbose --observe-links ./exctrl.py
 
 3. Access http://<ip address of ryu host>:8080 with your web browser.
-#http://127.0.0.1:8080/exctrl/index.html  
+#http://10.0.0.250:8080/exctrl/index.html
+#http://10.0.0.250:8080/v1.0/topology/switches
 """
 
 import os

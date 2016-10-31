@@ -59,11 +59,12 @@ function _tick() {
 elem.drag = elem.force.drag().on("dragstart", _dragstart);
 function _dragstart(d) {
     var dpid = dpid_to_int(d.dpid)
-    d3.json("/v1.0/topology/switches/" + d.dpid,function(e, data) {alert(data[dpid]);});
-    d3.json("/stats/flow/" + dpid, 
+    //d3.json("/stats/flow/" + dpid, 
+    d3.json("/v1.0/topology/switches/" + d.dpid,
         function(e, data) {
-        flows = data[dpid];
-        console.log(flows);
+        console.log("/v1.0/topology/switches/" + d.dpid);
+        flows = data[0]["ports"];
+        console.log(typeof flows);
         elem.console.selectAll("ul").remove();
         li = elem.console.append("ul")
             .selectAll("li");
