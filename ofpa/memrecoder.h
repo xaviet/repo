@@ -48,7 +48,7 @@ int memRecoder(void* v_addr,unsigned int v_malloc,unsigned int v_free,int v_id)
       {
         if((g_memRecoder[t_j].m_addr!=NULL)&&(g_memRecoder[t_j].m_malloc!=g_memRecoder[t_j].m_free))
         {
-          printf("\n%d malloc:%d free:%d\n",g_memRecoder[t_j].m_id,g_memRecoder[t_j].m_malloc,g_memRecoder[t_j].m_free);
+          printf("\n[%d malloc:%d free:%d]\n",g_memRecoder[t_j].m_id,g_memRecoder[t_j].m_malloc,g_memRecoder[t_j].m_free);
         }
       }
       return(0);
