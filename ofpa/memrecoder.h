@@ -42,7 +42,7 @@ int memRecoder(void* v_addr,unsigned int v_malloc,unsigned int v_free,int v_id)
       g_memRecoder[t_i].m_free+=v_free;
       if(v_id!=0)
       {
-        g_memRecoder[t_i].m_id+=v_id;
+        g_memRecoder[t_i].m_id=v_id;
       }
       for(t_j=0;t_j<def_memRecoderNumber;t_j++)
       {

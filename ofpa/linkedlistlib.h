@@ -49,7 +49,7 @@ int linkedlistPut(struct td_linkedlist* v_plinkedlist,int v_handle,int v_optcode
   struct td_linkedlistNode* t_plinkedlistNode=NULL;
   if(v_plinkedlist!=NULL)
   {
-    t_plinkedlistNode=(struct td_linkedlistNode*)malloc(sizeof(struct td_linkedlistNode));memRecoder(t_plinkedlistNode,1,0,96);
+    t_plinkedlistNode=(struct td_linkedlistNode*)malloc(sizeof(struct td_linkedlistNode));memRecoder(t_plinkedlistNode,1,0,52);
     t_plinkedlistNode->m_handle=v_handle;
     t_plinkedlistNode->m_optcode=v_optcode;
     t_plinkedlistNode->m_status=v_status;

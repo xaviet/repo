@@ -179,6 +179,7 @@ int ofpLldpInquery(struct td_ptnapiPort* v_pPort)
     memcpy(t_lldpPort,v_pPort->portName,16);
     logStr("ofp Lldp Inquery (portname): ",1);logStr(t_lldpPort,1);
     ofpMsgPut(def_ofpaLldpInquiry,0,0,t_lldpPort,0);
+    free(t_lldpPort);
   }
   return(0);
 }
