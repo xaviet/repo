@@ -25,6 +25,11 @@
 #include "arpa/inet.h"
 #include "regex.h"
 
+#ifndef def_debug
+#define def_debug
+#endif
+//#undef def_debug
+
 #define def_stringBuff 65535
 
 time_t g_startTime=0;
@@ -119,6 +124,7 @@ char* regexGetLine(const char* v_pOriginStr,const char* v_reg)
   regcomp(&t_oRegex,v_reg,0);
   if(regexec(&t_oRegex,v_pOriginStr,t_nmatch,t_match,0)!=0)
   {
+    free(t_str);
     return(0);
   }
   t_len=t_match[0].rm_eo-t_match[0].rm_so;

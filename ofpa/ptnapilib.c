@@ -152,17 +152,17 @@ int ptnapiData(struct td_linkedlistNode* v_linklistNode,void* v_p)
     if(t_strRegex!=0)
     {
       sscanf(t_strRegex,"%*s%s",t_strValue);
-      free(t_strRegex);
       g_ptnapiData.neId=swapEndian32(inet_addr(t_strValue));
+      free(t_strRegex);
     }
     t_strRegex=regexGetLine((char*)v_p,"sysmac\\s*:\\s*\\S*");
     if(t_strRegex!=0)
     {
       sscanf(t_strRegex,"sysmac%*s%2x%2x.%2x%2x.%2x%2x",&(t_iMac[0]),&(t_iMac[1]),&(t_iMac[2]),&(t_iMac[3]),&(t_iMac[4]),&(t_iMac[5]));
-      free(t_strRegex);
       mac6CharsFrom6Ints(g_ptnapiData.local.portMac,t_iMac);
       g_ptnapiData.local.portId=swapEndian32(def_ptnapiLocalPortId);
       strcpy(g_ptnapiData.local.portName,"lo");
+      free(t_strRegex);
     }
   }
   else
@@ -198,16 +198,16 @@ int ptnapiPortData(struct td_linkedlistNode* v_linklistNode,void* v_p)
       if(t_strRegex!=0)
       {
         sscanf(t_strRegex,"%*s%d",&t_intValue);
-        free(t_strRegex);
         g_ptnapiData.port[t_portNo-1].portId=swapEndian32(t_intValue);
         logStr("ptnapi Port Data got ID: ",0);logInt(t_intValue,1);
+        free(t_strRegex);
       }
       t_strRegex=regexGetLine((char*)v_p,"mac\\s*:\\s*\\S*");
       if(t_strRegex!=0)
       {
         sscanf(t_strRegex,"mac%*s%2x%2x.%2x%2x.%2x%2x",&(t_iMac[0]),&(t_iMac[1]),&(t_iMac[2]),&(t_iMac[3]),&(t_iMac[4]),&(t_iMac[5]));
-        free(t_strRegex);
         mac6CharsFrom6Ints(g_ptnapiData.port[t_portNo-1].portMac,t_iMac);
+        free(t_strRegex);
       }
     }
     else
@@ -229,7 +229,8 @@ int ptnapiPortDataInquery(struct td_linkedlist* v_pSocketLinkList,int v_ptnapiSo
   t_tempStr=(char*)malloc(def_msgBuff);memRecoder(t_tempStr,1,0,229);
   sprintf(t_tempChars,def_ptnapiPort,v_portNo);
   sprintf(t_tempStr,def_ptnapiPortData,t_tempChars);
-  ptnapiSocketSessionInquery(v_pSocketLinkList,v_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,v_function);  
+  ptnapiSocketSessionInquery(v_pSocketLinkList,v_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,v_function);
+  free(t_tempStr);  
   return(0);  
 }
 
@@ -344,6 +345,7 @@ int ptnapiLldpInquery(struct td_linkedlist* v_pSocketLinkList,int v_ptnapiSocket
   sprintf(t_tempChars,def_ptnapiPort,v_portNo);
   sprintf(t_tempStr,def_ptnapiLldpNeighbour,t_tempChars);
   ptnapiSocketSessionInquery(v_pSocketLinkList,v_ptnapiSocketFd,def_ptnapiPrompt,t_tempStr,v_function);  
+  free(t_tempStr);
   return(0);  
 }
 
@@ -371,6 +373,7 @@ int ptnapiLldpSignleInquery(char* v_portName)
   {
     logStr("ptnapi Lldp Signle Inquery linkedlistLength big than 32",1);
   }
+  free(t_tempStr);
   return(0);  
 }
 

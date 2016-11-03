@@ -22,6 +22,6 @@ int main()
   struct s s1;
   strcpy(s1.c,"12345678");
   memDisp(&s1,8);
-  
+  free(NULL);
   return(0);
 }

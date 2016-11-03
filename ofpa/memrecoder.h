@@ -14,10 +14,10 @@
 
 #include "stdio.h"
 
-#ifndef def_debug
-#define def_debug
+#ifndef def_memRecoder
+#define def_memRecoder
 #endif
-//#undef def_debug
+#undef def_memRecoder
 
 struct td_memOverflow
 {
@@ -27,12 +27,12 @@ struct td_memOverflow
   int m_id;
 };
 
-#define def_memRecoderNumber 2048
+#define def_memRecoderNumber 8192
 struct td_memOverflow g_memRecoder[def_memRecoderNumber]={0};
 
 int memRecoder(void* v_addr,unsigned int v_malloc,unsigned int v_free,int v_id)
 {
-#ifdef def_debug
+#ifdef def_memRecoder
   int t_i=0,t_j=0;
   for(t_i=0;t_i<def_memRecoderNumber;t_i++)
   {
@@ -43,13 +43,6 @@ int memRecoder(void* v_addr,unsigned int v_malloc,unsigned int v_free,int v_id)
       if(v_id!=0)
       {
         g_memRecoder[t_i].m_id=v_id;
-      }
-      for(t_j=0;t_j<def_memRecoderNumber;t_j++)
-      {
-        if((g_memRecoder[t_j].m_addr!=NULL)&&(g_memRecoder[t_j].m_malloc!=g_memRecoder[t_j].m_free))
-        {
-          printf("\n[%d malloc:%d free:%d]\n",g_memRecoder[t_j].m_id,g_memRecoder[t_j].m_malloc,g_memRecoder[t_j].m_free);
-        }
       }
       return(0);
     }
@@ -64,6 +57,16 @@ int memRecoder(void* v_addr,unsigned int v_malloc,unsigned int v_free,int v_id)
       if(v_id!=0)
       {
         g_memRecoder[t_i].m_id+=v_id;
+      }
+      if(t_i>=(def_memRecoderNumber>>1))
+      {
+        for(t_j=0;t_j<def_memRecoderNumber;t_j++)
+        {
+          if((g_memRecoder[t_j].m_addr!=NULL))//&&(g_memRecoder[t_j].m_malloc!=g_memRecoder[t_j].m_free))
+          {
+            printf("\n%08x[%d malloc:%d free:%d]",(int)(g_memRecoder[t_j].m_addr),g_memRecoder[t_j].m_id,g_memRecoder[t_j].m_malloc,g_memRecoder[t_j].m_free);
+          }
+        }
       }
       return(0);
     }
