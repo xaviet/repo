@@ -19,6 +19,9 @@ struct s
 
 int main()
 {
+  float cost=12.99;
+  float percent=80.0;
+  printf("\a\nThis copy of \"War and Peace\" sells for $%2.2f.\nThat is %2.0f%% of list.\n",cost,percent);
   struct s s1;
   strcpy(s1.c,"12345678");
   memDisp(&s1,8);
