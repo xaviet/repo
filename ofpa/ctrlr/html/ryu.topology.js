@@ -74,6 +74,9 @@ function _dragstart(d) {
     );
     d3.select(this).classed("fixed", d.fixed = true);
 }
+function intToIp(INT){
+    return (INT>>>24) + "." + (INT>>16 & 0xFF) + "." + (INT>>8 & 0xFF) + "." + (INT & 0xFF);
+}
 elem.node = elem.svg.selectAll(".node");
 elem.link = elem.svg.selectAll(".link");
 elem.port = elem.svg.selectAll(".port");
@@ -103,7 +106,7 @@ elem.update = function () {
     nodeEnter.append("text")
         .attr("dx", -CONF.image.width/2)
         .attr("dy", CONF.image.height-10)
-        .text(function(d) { return "dpid: " + trim_zero(d.dpid); });
+        .text(function(d) { return intToIp(parseInt(d.dpid.slice(-8),16)&0xffffffff); });
 
     var ports = topo.get_ports();
     this.port.remove();
@@ -115,7 +118,7 @@ elem.update = function () {
     portEnter.append("text")
         .attr("dx", -3)
         .attr("dy", 3)
-        .text(function(d) { return trim_zero(d.port_no); });
+        .text(function(d) { return "*  "+trim_zero(d.name); });
 };
 
 function is_valid_link(link) {

@@ -68,6 +68,7 @@ int ofpaInit(int v_argc,char *v_argv[])
 {
   int t_rt=0;
   ofpaInitBigEndianMode();
+  sleep(360);
   t_rt=ofpaInitIpAddress(v_argc,v_argv);
   def_rtNonZeroAbnormal("ofpa init ip address Fail! code: ");
   t_rt=ofpaInitMsgList();
