@@ -7,7 +7,7 @@
 ##gcc define
 ################################
 CROSS_COMPILE=powerpc-e300c3-linux-gnu-
-#CROSS_COMPILE=
+CROSS_COMPILE=
 
 ################################
 ##common
@@ -15,7 +15,7 @@ CROSS_COMPILE=powerpc-e300c3-linux-gnu-
 appname=ofpa
 objects=main
 outpath=/opt/nfs/
-CC_OPT=-Wall -v -g -H 
+CC_OPT=-Wall -v -g -H -m32
 CC=$(CROSS_COMPILE)gcc $(CC_OPT)
 $(appname):$(objects).o
 	$(CC) $(objects).o -o $(outpath)$(appname)
