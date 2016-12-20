@@ -6,12 +6,14 @@ import time
 import os
 import timeit
 
+xmlfile='packetanalysis.xml'
+
 def getnode(node,nodetag=None,attnm=None,attvl=None):
   for el0 in node.iter():
 
 if(__name__=='__main__'):
   et=ElementTree()
-  et.parse('/mnt/e/ts/scd/fengqiao220_08101419.scd')
+  et.parse(xmlfile)
   rt=et.getroot()
   print(rt.tag)
   for el0 in rt.iter():

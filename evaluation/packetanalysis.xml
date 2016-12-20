@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PacketAnalysis name="报文分析">
+  <ManageAndAnalysis name="管理和分析">
+    <RTAlert name="实时告警">
+    流量突变、通信中断、通信超时、报文编码错误、丢包、错序、重复、MU 之间失步、MU 丢失同步信号、采样值品质改变、GOOSE 状态改变、报文与配置不一致
+    </RTAlert>
+    <AnalysisReport name="分析报告">
+    在所有报文、每个网口、单个网口的每个报文类型等多个层次上统计了报文总数、总字节数、总时间、平均流量、各种类型报文数量、错误数和警告数、以及错误信息列表
+    </AnalysisReport>
+    <SMVShow name="SMV录播">
+    </SMVShow>    
+    <GOOSEEvent name="GOOSE事件">
+    </GOOSEEvent> 
+    <PTPStatus name="PTP状态">
+    </PTPStatus>
+    <MSMInfomation name="MMS信息">
+    </MSMInfomation>
+  </ManageAndAnalysis>
+  <PacketCollect name="报文采集">
+    <CollectAbility name="采集能力">
+      <Band name="采集带宽">16MB/S</Band>
+      <PacketProcess name="报文处理">3us/Packet</PacketProcess>
+      <DataRecoder name="数据记录">
+        <PData name="过程层数据">
+          <DataObject name="数据对象">SMV/GOOSE/PTP</DataObject>
+          <DataFormat name="数据格式">
+            <SMV>COMTRADE(1999)</SMV>
+            <GOOSE>PCAP</GOOSE>
+            <PTP>PCAP</PTP>
+          </DataFormat>
+        </PData>
+        <SData name="站控层数据">
+          <DataObject name="数据对象">MMS/PTP</DataObject>
+          <DataFormat name="数据格式">
+            <MMS>PCAP</MMS>
+            <PTP>PCAP</PTP>
+          </DataFormat>
+        </SData>
+      </DataRecoder>
+    </CollectAbility>
+    <StoreAbility name="存储能力">
+      <Write name="写入带宽">30MB/S</Write>
+      <Capacity name="存储容量">>=1TB</Capacity> 
+    </StoreAbility>
+    <EMC name="抗干扰能力">
+      <GBT14598.9 name="辐射电磁场干扰">
+      <Level>3</Level>
+      </GBT14598.9>
+      <GBT14598.10 name="快速瞬变干扰">
+      <Level>3</Level>
+      </GBT14598.10>
+      <GBT14598.13 name="脉冲群干扰">
+      <Level>3</Level>
+      </GBT14598.13>
+      <GBT14598.14 name="静电放电干扰">
+      <Level>3</Level>
+      </GBT14598.14>
+    </EMC>
+    <Time name="同步">
+    </Time>
+    <Power name="电源">
+      <AC>220V</AC>
+    </Power>
+  </PacketCollect>
+</PacketAnalysis>           
