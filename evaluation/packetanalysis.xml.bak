@@ -32,7 +32,7 @@
         <SData name="站控层数据">
           <DataObject name="数据对象">MMS/PTP</DataObject>
           <DataFormat name="数据格式">
-            <MMS>PCAP</GOOSE>
+            <MMS>PCAP</MMS>
             <PTP>PCAP</PTP>
           </DataFormat>
         </SData>
@@ -62,4 +62,5 @@
       <AC>220V</AC>
     </Power>
   </PacketCollect>
-</PacketAnalysis>           
+</PacketAnalysis>   
+</xsl:stylesheet>        

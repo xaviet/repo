@@ -8,23 +8,29 @@ import os
 xmlfile='packetanalysis.xml'
 
 def funtime(fun):
-  starttime=time.time()
   def decoratorfun(para):
-    return(fun(para))
-  print(str((time.time()-starttime)*1000000)+'us')
+    starttime=time.time()
+    rt=fun(para)
+    print('funtime: '+str(int((time.time()-starttime)*1000000))+'us spent.')
+    return(rt)
   return(decoratorfun)
 
-@funtime
 def getnode(node,nodetag=None,attnm=None,attvl=None):
   for el0 in node.iter():
-    pass
-
+    if(el0!=node):
+      print(el0.tag)
+      getnode(el0,nodetag,attnm,attvl)
+  return(node)
+  
+@funtime
+def getnodebyft(node,nodetag=None,attnm=None,attvl=None):
+  return(getnode(node,nodetag,attnm,attvl))
+  
 if(__name__=='__main__'):
   et=ElementTree()
   et.parse(xmlfile)
   rt=et.getroot()
-  getnode(rt)
-  print(rt.tag)
+  print(getnodebyft(rt).attrib)
   for el0 in rt.iter():
     #print(el0.attrib)
     if('{http://www.iec.ch/61850/2003/SCL}ConnectedAP'==el0.tag):
