@@ -4,15 +4,26 @@
 from xml.etree.ElementTree import ElementTree
 import time
 import os
-import timeit
 
+xmlfile='packetanalysis.xml'
+
+def funtime(fun):
+  starttime=time.time()
+  def decoratorfun(para):
+    return(fun(para))
+  print(string((time.time()-starttime)*1000000)+'us')
+  return(decoratorfun)
+
+@funtime
 def getnode(node,nodetag=None,attnm=None,attvl=None):
   for el0 in node.iter():
+    pass
 
 if(__name__=='__main__'):
   et=ElementTree()
-  et.parse('packetanalysis.xml')
+  et.parse(xmlfile)
   rt=et.getroot()
+  getnode(rt)
   print(rt.tag)
   for el0 in rt.iter():
     #print(el0.attrib)
