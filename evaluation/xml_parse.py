@@ -16,16 +16,22 @@ def funtime(fun):
   return(decoratorfun)
 
 def getnode(node,nodetag=None,attnm=None,attvl=None):
+  rt=None
   for el0 in node.iter():
     if(el0!=node):
-      print(el0.tag)
+      print('Node: ',el0.tag,el0.attrib,el0.text)
       getnode(el0,nodetag,attnm,attvl)
-  return(node)
+  return(rt)
   
 @funtime
 def getnodebyft(node,nodetag=None,attnm=None,attvl=None):
   return(getnode(node,nodetag,attnm,attvl))
-  
+ 
+def openxml(xmlfile):
+  et=ElementTree()
+  et.parse(xmlfile)
+  return(et.getroot())
+
 if(__name__=='__main__'):
   et=ElementTree()
   et.parse(xmlfile)
