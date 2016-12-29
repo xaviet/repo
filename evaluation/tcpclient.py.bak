@@ -43,7 +43,7 @@ def run(index):
   return(0)
   
 if(__name__=='__main__'):
-  connnumber=2048
+  connnumber=1024
   starttime=time.time()
   pcslist=[]
   for index in range(connnumber):

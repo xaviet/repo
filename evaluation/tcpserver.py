@@ -34,7 +34,7 @@ def run(v_conn,index):
   return(0)
 
 if(__name__=='__main__'):
-  ip_port=('172.28.72.213',60013)
+  ip_port=('172.28.72.64',60013)
   skt=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
   skt.bind(ip_port)
   skt.listen(8192)

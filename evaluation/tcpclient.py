@@ -38,12 +38,12 @@ def run(index):
             loop=0
         break
       time.sleep(0)
-    time.sleep(0.1) 
+    time.sleep(1.0) 
   sfd.close()
   return(0)
   
 if(__name__=='__main__'):
-  connnumber=2048
+  connnumber=4096
   starttime=time.time()
   pcslist=[]
   for index in range(connnumber):
