@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import time
-  
+import xml_parse 
+
 def openxml(xmlfile):
   return(xml_parse.openxml(xmlfile))
   
@@ -12,9 +13,6 @@ def dens(xmltag):
   
 def main(xmlnode):
   rt=0
-  ieddescdict=getieddesc(xmlnode)
-  gseappiddict=getappid(xmlnode,'GSE')
-  smvappiddict=getappid(xmlnode,'SMV')
   return(rt)
 
 if(__name__=='__main__'):
