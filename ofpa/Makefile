@@ -7,7 +7,7 @@
 ##gcc define
 ################################
 CROSS_COMPILE=powerpc-e300c3-linux-gnu-
-CROSS_COMPILE=
+#CROSS_COMPILE=
 
 ################################
 ##common

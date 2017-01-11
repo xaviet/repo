@@ -1,3 +1,13 @@
+########for RYU 4.9
+@/usr/lib/python3.4/site-packages/tinyrpc/protocols/jsonrpc.py
+-213 for k in rep.iterkeys():
++213 for k in iter(rep.keys()):
+
+@/usr/lib/python3.4/site-packages/webob/response.py
+-content_type=None, conditional_response=None, charset=_marker,
++content_type=None, conditional_response=None, charset='UTF-8',
+
+########for RYU 4.7
 @/usr/lib/python3.4/site-packages/ryu/app/wsgi.py
 -174 self.ws.send(unicode(message))
 +174 self.ws.send(str(message))
