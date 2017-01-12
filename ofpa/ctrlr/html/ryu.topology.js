@@ -59,23 +59,16 @@ function _tick() {
 elem.drag = elem.force.drag().on("dragstart", _dragstart);
 function _dragstart(d) {
     var dpid = dpid_to_int(d.dpid)
-    //d3.json("/stats/flow/" + dpid, 
-    d3.json("/v1.0/topology/switches/" + d.dpid,
-        function(e, data) {
-        console.log("/v1.0/topology/switches/" + d.dpid);
-        flows = data[0]["ports"];
-        console.log(typeof flows);
+    d3.json("/stats/flow/" + dpid, function(e, data) {
+        flows = data[dpid];
+        console.log(flows);
         elem.console.selectAll("ul").remove();
         li = elem.console.append("ul")
             .selectAll("li");
         li.data(flows).enter().append("li")
             .text(function (d) { return JSON.stringify(d, null, " "); });
-        }
-    );
+    });
     d3.select(this).classed("fixed", d.fixed = true);
-}
-function intToIp(INT){
-    return (INT>>>24) + "." + (INT>>16 & 0xFF) + "." + (INT>>8 & 0xFF) + "." + (INT & 0xFF);
 }
 elem.node = elem.svg.selectAll(".node");
 elem.link = elem.svg.selectAll(".link");
@@ -106,7 +99,7 @@ elem.update = function () {
     nodeEnter.append("text")
         .attr("dx", -CONF.image.width/2)
         .attr("dy", CONF.image.height-10)
-        .text(function(d) { return intToIp(parseInt(d.dpid.slice(-8),16)&0xffffffff); });
+        .text(function(d) { return "dpid: " + trim_zero(d.dpid); });
 
     var ports = topo.get_ports();
     this.port.remove();
@@ -118,7 +111,7 @@ elem.update = function () {
     portEnter.append("text")
         .attr("dx", -3)
         .attr("dy", 3)
-        .text(function(d) { return "*  "+trim_zero(d.name); });
+        .text(function(d) { return trim_zero(d.port_no); });
 };
 
 function is_valid_link(link) {

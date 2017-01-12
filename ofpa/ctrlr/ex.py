@@ -1,25 +1,77 @@
-from ryu.ofproto.ofproto_v1_3_parser import OFPPort
-import copy
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-class PortState(dict):
-    def __init__(self):
-        super(PortState, self).__init__()
+"""/usr/bin/ryu-manager
+Usage example
 
-    def add(self, port_no, port):
-        self[port_no] = port
+mount -t nfs -o nolock 10.0.0.250:/opt/nfs /mnt/nfs
 
-    def remove(self, port_no):
-        del self[port_no]
+1. Join switches (use your favorite method):
+$ mn --topo tree,depth=4 --switch ovs,protocols=OpenFlow13 --controller=remote,ip=10.0.0.250,port=6633 --mac
+$ mn --custom /opt/topo/ex.py --topo topoex --switch ovs,protocols=OpenFlow13 --controller=remote,ip=10.0.0.250,port=6633 --mac
 
-    def modify(self, port_no, port):
-        self[port_no] = port
+2. Run this application:
+$ PYTHONPATH=. /usr/bin/ryu-manager --verbose --observe-links ./exctrl.py
+$ PYTHONPATH=. /usr/bin/ryu-manager --observe-links ./ex.py
 
-d1={5250946477030637671: {4294967294:OFPPort(port_no=135397631,hw_addr='48:df:3c:00:00:fe',name=b'ge.1.1',config=0,state=0,curr=2080,advertised=0,supported=0,peer=0,curr_speed=1000000,max_speed=0),4294967295:OFPPort(port_no=135397632,hw_addr='48:df:3c:00:00:fe',name=b'ge.1.1',config=0,state=0,curr=2080,advertised=0,supported=0,peer=0,curr_speed=1000000,max_speed=0)},5250946477030637670: {4294967296:OFPPort(port_no=135397633,hw_addr='48:df:3c:00:00:fe',name=b'ge.1.1',config=0,state=0,curr=2080,advertised=0,supported=0,peer=0,curr_speed=1000000,max_speed=0),4294967297:OFPPort(port_no=135397634,hw_addr='48:df:3c:00:00:fe',name=b'ge.1.1',config=0,state=0,curr=2080,advertised=0,supported=0,peer=0,curr_speed=1000000,max_speed=0)}}
+3. Access http://<ip address of ryu host>:8080 with your web browser.
+#http://10.0.0.250:8080/ex/index.html
+#http://10.0.0.250:8080/v1.0/topology/switches
+"""
 
-print(d1.get(5250946477030637670,{}).values())
+import os
+import time
+import json
 
-d2=copy.deepcopy(d1.get(5250946477030637670,{}))
+import logging
+LOG = logging.getLogger('ex: ')
 
-for port in d1.get(5250946477030637670,{}).values():
-  print('*************************************')
-  print(port)
+from webob.static import DirectoryApp
+from webob import Response
+
+from ryu.app.wsgi import ControllerBase, WSGIApplication, route
+from ryu.base import app_manager
+from ryu.app import simple_switch_stp_13
+from ryu.lib import stplib
+
+ex_instance_name = 'ex_api_app'
+PATH = os.path.dirname(__file__)
+
+# Serving static files
+class exapp(simple_switch_stp_13.SimpleSwitch13):
+  _CONTEXTS = {'wsgi': WSGIApplication,'stplib': stplib.Stp}
+
+  def __init__(self, *args, **kwargs):
+    super(exapp, self).__init__(*args, **kwargs)
+    wsgi = kwargs['wsgi']
+    wsgi.register(exctrl,{ex_instance_name : self})
+
+class exctrl(ControllerBase):
+  def __init__(self, req, link, data, **config):
+    super(exctrl, self).__init__(req, link, data, **config)
+    self.static_app = DirectoryApp('%s/html/' % PATH)
+    self.exapp = data[ex_instance_name]
+
+  @route('ex', '/ex/about', methods=['POST'])
+  def exAbout(self, req, **kwargs):
+    body = json.dumps('Xa@whnec by 20161111!')
+    return(Response(content_type='application/json', body=body))
+    
+  @route('ex', '/ex/about', methods=['GET'])
+  def exAbout(self, req, **kwargs):
+    body = json.dumps('Xa@whnec by 20161111!')
+    return(Response(content_type='application/json', body=body))
+  
+  @route('ex', '/ex/{filename:.*}')
+  def static_handler(self, req, **kwargs):
+    if kwargs['filename']:
+      req.path_info = kwargs['filename']
+    return(self.static_app(req))
+    
+if(__name__=='__main__'):
+  pass
+
+app_manager.require_app('ryu.app.rest_topology')
+app_manager.require_app('ryu.app.ws_topology')
+app_manager.require_app('ryu.app.ofctl_rest')
+
