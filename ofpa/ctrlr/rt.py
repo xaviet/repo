@@ -31,32 +31,26 @@ from webob import Response
 
 from ryu.app.wsgi import ControllerBase, WSGIApplication, route
 from ryu.base import app_manager
-from ryu.app import simple_switch_13
-#from ryu.lib import stplib
+from ryu.app import rest_router
+from ryu.lib import stplib
 
 ex_instance_name = 'ex_api_app'
 PATH = os.path.dirname(__file__)
 
 # Serving static files
-class exapp(simple_switch_13.SimpleSwitch13):
-  _CONTEXTS = {'wsgi': WSGIApplication}
-  #_CONTEXTS = {'wsgi': WSGIApplication,'stplib': stplib.Stp}
-  
+class exapp(rest_router.RestRouterAPI):
+  _CONTEXTS = {'wsgi': WSGIApplication,'stplib': stplib.Stp}
+
   def __init__(self, *args, **kwargs):
     super(exapp, self).__init__(*args, **kwargs)
     wsgi = kwargs['wsgi']
     wsgi.register(exctrl,{ex_instance_name : self})
 
-class exctrl(ControllerBase):
+class exctrl(rest_router.RouterController):
   def __init__(self, req, link, data, **config):
     super(exctrl, self).__init__(req, link, data, **config)
     self.static_app = DirectoryApp('%s/html/' % PATH)
     self.exapp = data[ex_instance_name]
-
-  @route('ex', '/ex/about', methods=['POST'])
-  def exAbout(self, req, **kwargs):
-    body = json.dumps('Xa@whnec by 20161111!')
-    return(Response(content_type='application/json', body=body))
     
   @route('ex', '/ex/about', methods=['GET'])
   def exAbout(self, req, **kwargs):
