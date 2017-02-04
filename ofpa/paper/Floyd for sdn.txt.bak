@@ -6,7 +6,7 @@ SDNÊÇÒ»ÖÖ·Ç³£ÏÈ½øµÄÍøÂç¼Ü¹¹£¬¿ÉÒÔ¸üºÃµØÂú×ãÏÂÒ»´úÍøÂçµÄ·¢Õ¹ĞèÒª¡£Çø±ğÓÚ´«Í³ÍøÂç¼
 1 RYU¡¢Mininet½éÉÜ
 1.1 RYU½éÉÜ
 £¨Í¼£©RYU¼Ü¹¹Ä£ĞÍ
-RyuµÄÊÂ¼ş´¦Àí¡¢½ø³ÌÓëÏß³ÌÄ£ĞÍ£º
+RyuµÄÊÂ¼ş´¦Àí¡¢½ø³ÌÓëÏß³ÌÄ£¿é£º
   1) Applications£º¸ÃÀà¼Ì³Ğ×Ôryu.base.app_manager.RyuApp£¬ÓÃ»§Âß¼­±»ÃèÊöÎªÒ»¸öAPP¡£
   2) Event£º¼Ì³Ğ×Ôryu.controller.event.EventBase£¬Ó¦ÓÃ³ÌĞòÖ®¼äµÄÍ¨ĞÅÓÉtransmitting and receiving eventsÍê³É¡£
   3) Event Queue£ºÃ¿Ò»¸öapplication¶¼ÓĞÒ»¸ö¶ÓÁĞÓÃÓÚ½ÓÊÕÊÂ¼ş¡£
