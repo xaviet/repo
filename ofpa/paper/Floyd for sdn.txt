@@ -37,6 +37,7 @@ Mininet中创建16个SDN交换机构成的4X4矩阵网络，每个交换机再连接一台主机.
 Switches模块的数据，获取到了LLDP数据发送时的时间戳，然后和收到的时间戳进行相减，得到了LLDP数据包从控制器下发到交换机A，然后从交换机A到交换机B，再上报给控制器的时延T1
 
 
+
 研究环境：
 SDN控制器-RYU version 4.9/fedora22-x64
 SDN虚拟交换机-mininet version 2.2.1/ubuntu14.04-x86

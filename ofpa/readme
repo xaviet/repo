@@ -1,4 +1,7 @@
 ########for RYU 4.9
+@/usr/lib/python3.4/site-packages/ryu/cfg.py
++49 lldpDealyDict={}
+
 @/usr/lib/python3.4/site-packages/ryu/topology/switches.py
 -257  def lldp_received(self):
 -258       self.sent = 0
@@ -10,7 +13,22 @@
 +262            rt=int(time.time()*1000000)
 +263            delay=rt-st
 +264        return(delay)
-+809        LOG.debug('LLDP %d %d %d %d delay:%d', src_dpid, src_port_no, dst_dpid, dst_port_no, lldpDealy)
++809        LOG.debug('LLDP %d %d %d %d delay:%d', src_dpid, src_port_no, dst_dpid, dst_port_no, lldpDealy);cfg.lldpDealyDict['%d,%d,%d,%d'%(src_dpid,dst_dpid)]=lldpDealy;#print(cfg.lldpDealyDict)
+        str1=''
+        switches=16
+        for i in range(1,switches+1):
+          str1+='  %2d '%(i)
+        print(' NdA | NdZ (us) %s'%(str1))
+        print('-'*96)
+        for i in range(switches):
+          str=' %2d  |          '%(i+1)
+          for j in range(switches):
+            if(i==j):
+              d=0
+            else:
+              d=cfg.lldpDealyDict.get('%d,%d'%(i+1,j+1),-1)
+            str+='%4d '%(d)
+          print(str)
         
 @/usr/lib/python3.4/site-packages/tinyrpc/protocols/jsonrpc.py
 -213 for k in rep.iterkeys():

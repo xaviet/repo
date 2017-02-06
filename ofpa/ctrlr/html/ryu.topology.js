@@ -1,11 +1,11 @@
 var CONF = {
     image: {
-        width: 50,
-        height: 40
+        width: 32,
+        height: 32
     },
     force: {
-        width: 960,
-        height: 500,
+        width: 1024,
+        height: 640,
         dist: 200,
         charge: -600
     }
