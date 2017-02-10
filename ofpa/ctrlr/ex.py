@@ -8,7 +8,7 @@ mount -t nfs -o nolock 10.0.0.250:/opt/nfs /mnt/nfs
 
 1. Join switches (use your favorite method):
 $ mn --topo tree,depth=4 --switch ovs,protocols=OpenFlow13 --controller=remote,ip=10.0.0.250,port=6633 --mac
-$ mn --custom /opt/topo/ex.py --topo topoex --switch ovs,protocols=OpenFlow13 --controller=remote,ip=10.0.0.250,port=6633 --mac
+$ mn --topo topoex --custom /opt/topo/ex.py --mac --switch ovsk,protocols=OpenFlow13 --controller=remote,ip=10.0.0.250,port=6633 -x --arp --link tc
 
 2. Run this application:
 $ PYTHONPATH=. /usr/bin/ryu-manager --verbose --observe-links ./exctrl.py
@@ -22,6 +22,9 @@ $ PYTHONPATH=. /usr/bin/ryu-manager --observe-links ./ex.py
 import os
 import time
 import json
+
+from ryu import cfg
+import multiprocessing
 
 import logging
 LOG = logging.getLogger('ex: ')
@@ -72,7 +75,92 @@ class exctrl(ControllerBase):
 if(__name__=='__main__'):
   pass
 
+def floyd():
+  time.sleep(8.0) 
+  print('floyd starting')
+  while(True):
+    startTime=time.time()
+    
+    lldpDelayDict={}
+    dpDelayDict={}
+    linkDelayDict={}
+    
+    t_opt='select * from \'{0}\';'.format(cfg.lldpDelay)
+    t_codegroup=cfg.optrecod(cfg.lldpDelay,t_opt)
+    for el in t_codegroup:
+      lldpDelayDict[(el[0],el[1])]=(el[2],el[3],el[4])
+    #print(lldpDelayDict)
+    
+    t_opt='select * from \'{0}\';'.format(cfg.dpDelay)
+    t_codegroup=cfg.optrecod(cfg.dpDelay,t_opt)
+    for el in t_codegroup:
+      dpDelayDict[el[0]]=el[1]
+    #print(dpDelayDict)
+    
+    for key,value in lldpDelayDict.items():
+      linkDelay=value[0]-dpDelayDict[key[0]]-dpDelayDict[key[1]]
+      if(linkDelay>0):
+        linkDelayDict[key]=(linkDelay,value[1],value[2])
+      else:
+        linkDelayDict[key]=value
+        
+    linkCount=0
+    nm=[]
+    pm=[]
+    for i in range(16):
+      el=[]
+      el0=[]
+      for j in range(16):
+        delay=linkDelayDict[(i+1,j+1)][0]
+        el.append(delay)
+        destport=-1
+        if(i==j):
+          destport=0
+        if(delay>0):
+          linkCount+=1
+          destport=linkDelayDict[(i+1,j+1)][1]
+        el0.append(destport)
+      nm.append(el)
+      pm.append(el0)
+      
+    print('*'*128)  
+    for el in nm:
+      print(el)
+    for el in pm:
+      print(el)
+    print('*'*128)  
+    
+    t_optA=[]
+    nodeNum=16
+    
+    #floyd算法
+    for k in range(nodeNum):
+      for i in range(nodeNum):
+        for j in range(nodeNum):
+          #if((nm[i][k]!=-1) and (nm[k][j]!=-1) and (nm[i][j]==-1)): 
+          if((nm[i][k]!=-1) and (nm[k][j]!=-1) and ((nm[i][k] + nm[k][j] < nm[i][j]) or (nm[i][j]==-1))): 
+            #print(nm[i][k],nm[k][j],nm[i][j])
+            nm[i][j]=nm[i][k]+nm[k][j]
+            #print(nm[i][k],nm[k][j],nm[i][j]);
+            pm[i][j]=pm[i][k]
+
+    for i in range(nodeNum):
+      for j in range(nodeNum):      
+        t_optA.append('update \'{0}\' set egressport={1} where srcedp={2} and destdp={3};'.format(cfg.rttbl,pm[i][j],i+1,j+1))
+    cfg.optrecodbatch(cfg.rttbl,t_optA)
+            
+    for el in nm:
+      print(el)
+    for el in pm:
+      print(el)            
+        
+    print('Spent %f seconds'%(time.time()-startTime))
+    time.sleep(120.0) 
+  pass
+  
 app_manager.require_app('ryu.app.rest_topology')
 app_manager.require_app('ryu.app.ws_topology')
 app_manager.require_app('ryu.app.ofctl_rest')
 
+pcs=multiprocessing.Process(target=floyd)
+pcs.start()
