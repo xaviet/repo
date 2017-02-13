@@ -19,6 +19,7 @@ def dispMatrix(nbrDelay,comment):
     print(str1)
 
 def aveg(a):
+  p=8
   x=0
   minx=999999
   maxx=0
@@ -29,7 +30,7 @@ def aveg(a):
       minx=el1 if(el1<minx) else minx
       maxx=el1 if(el1>maxx) else maxx
       x+=el1
-  return(minx,int(x/240),maxx)
+  return(minx+p,int(x/240)+p,maxx+p)
 
 def main():
   nbrMatrix=readMatrix()
@@ -56,6 +57,17 @@ def main():
   dispMatrix(nbrDelay,'(100us)')
   print()
   dispMatrix(nbrNexthop,'(Next)')
+  
+  oc=0
+  ec=0
+  for i in range(nodeNum):
+    for j in range(nodeNum):
+      if(floydDelay[i][j]<nbrDelay[i][j]):
+        oc+=1
+        print(i,j,floydDelay[i][j],nbrDelay[i][j])
+      if(floydDelay[i][j]==nbrDelay[i][j]):
+        ec+=1
+  print(oc,ec-16)
   print(aveg(floydDelay),aveg(nbrDelay))
   
 if(__name__=='__main__'):
