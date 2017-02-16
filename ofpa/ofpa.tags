@@ -251,7 +251,7 @@ add_evpn_local	./ctrlr/ryu/services/protocols/bgp/api/prefix.py	247;"	function
 add_flow	./ctrlr/ryu/app/example_switch_13.py	45;"	member	class:ExampleSwitch13
 add_flow	./ctrlr/ryu/app/simple_switch.py	39;"	member	class:SimpleSwitch
 add_flow	./ctrlr/ryu/app/simple_switch_12.py	33;"	member	class:SimpleSwitch12
-add_flow	./ctrlr/ryu/app/simple_switch_13.py	51;"	member	class:SimpleSwitch13
+add_flow	./ctrlr/ryu/app/simple_switch_13.py	53;"	member	class:SimpleSwitch13
 add_flow	./ctrlr/ryu/app/simple_switch_14.py	51;"	member	class:SimpleSwitch14
 add_flow	./ctrlr/ryu/app/simple_switch_igmp.py	47;"	member	class:SimpleSwitchIgmp
 add_flow	./ctrlr/ryu/app/simple_switch_lacp.py	47;"	member	class:SimpleSwitchLacp
@@ -390,7 +390,7 @@ AppManager	./ctrlr/ryu/base/app_manager.py	351;"	class
 AppManager	./ctrlr/ryu/cmd/manager.py	31;"	namespace
 AppManager	./ctrlr/ryu/cmd/ofa_neutron_agent.py	32;"	namespace
 appname	./Makefile	15;"	macro
-app_manager	./ctrlr/ex.py	33;"	namespace
+app_manager	./ctrlr/ex.py	36;"	namespace
 app_manager	./ctrlr/exctrl.py	31;"	namespace
 app_manager	./ctrlr/rt.py	33;"	namespace
 app_manager	./ctrlr/ryu/app/bmpstation.py	20;"	namespace
@@ -592,6 +592,7 @@ AUTO_NEGOTIATE	./ctrlr/ryu/lib/of_config/constants.py	128;"	variable
 aux	./ctrlr/ryu/tests/unit/packet/test_icmpv6.py	1721;"	variable	class:Test_mldv2_report_group
 auxiliary_id	./ofplib.h	164;"	member	struct:ofp_switch_features
 aux_len	./ctrlr/ryu/tests/unit/packet/test_icmpv6.py	1717;"	variable	class:Test_mldv2_report_group
+aveg	./ctrlr/a.py	21;"	function
 B	./ctrlr/html/d3.v3.min.js	1;"	function	function:i
 b	./ctrlr/html/d3.v3.min.js	1;"	function	function:s.y
 B64	./ctrlr/ryu/tests/unit/ofproto/test_parser_ofpmatch.py	144;"	class	function:_add_tests
@@ -1476,6 +1477,8 @@ cells	./ctrlr/html/d3.v3.min.js	2;"	property	class:ar.o
 center	./ctrlr/html/d3.v3.min.js	2;"	function
 centroid	./ctrlr/html/d3.v3.min.js	4;"	function
 CERTIFICATE	./ctrlr/ryu/lib/of_config/constants.py	174;"	variable
+cfg	./ctrlr/ex.py	26;"	namespace
+cfg	./ctrlr/ryu/app/simple_switch_13.py	25;"	namespace
 cfg	./ctrlr/ryu/app/wsgi.py	33;"	namespace
 cfg	./ctrlr/ryu/base/app_manager.py	33;"	namespace
 cfg	./ctrlr/ryu/cfg.py	17;"	namespace
@@ -1903,7 +1906,7 @@ CONFIG_DISPATCHER	./ctrlr/ryu/app/simple_switch_rest_13.py	21;"	namespace
 CONFIG_DISPATCHER	./ctrlr/ryu/app/simple_switch_snort.py	22;"	namespace
 CONFIG_DISPATCHER	./ctrlr/ryu/app/simple_switch_stp_13.py	18;"	namespace
 CONFIG_DISPATCHER	./ctrlr/ryu/controller/handler.py	25;"	variable
-CONFIG_DISPATCHER	./ctrlr/ryu/controller/ofp_handler.py	36;"	namespace
+CONFIG_DISPATCHER	./ctrlr/ryu/controller/ofp_handler.py	37;"	namespace
 CONFIG_DISPATCHER	./ctrlr/ryu/lib/bfdlib.py	45;"	namespace
 CONFIG_DISPATCHER	./ctrlr/ryu/tests/integrated/tester.py	29;"	namespace
 CONFIG_NAME	./ctrlr/ryu/lib/netconf/constants.py	108;"	variable
@@ -1975,7 +1978,7 @@ controller	./ctrlr/ryu/cmd/manager.py	32;"	namespace
 CONTROLLER	./ctrlr/ryu/lib/of_config/constants.py	217;"	variable
 controller	./ctrlr/ryu/tests/unit/controller/test_controller.py	32;"	namespace
 controller	./ctrlr/ryu/tests/unit/ofproto/test_ofproto.py	41;"	namespace
-ControllerBase	./ctrlr/ex.py	32;"	namespace
+ControllerBase	./ctrlr/ex.py	35;"	namespace
 ControllerBase	./ctrlr/exctrl.py	30;"	namespace
 ControllerBase	./ctrlr/rt.py	32;"	namespace
 ControllerBase	./ctrlr/ryu/app/gui_topology/gui_topology.py	33;"	namespace
@@ -2059,6 +2062,7 @@ count_ip	./ctrlr/ryu/tests/unit/packet/test_vrrp.py	218;"	variable	class:Test_vr
 count_ip	./ctrlr/ryu/tests/unit/packet/test_vrrp.py	383;"	variable	class:Test_vrrpv3_ipv6
 count_ip	./ctrlr/ryu/tests/unit/packet/test_vrrp.py	49;"	variable	class:Test_vrrpv2
 count_single_vrf_routes	./ctrlr/ryu/services/protocols/bgp/operator/internal_api.py	44;"	member	class:InternalApi
+CPULimitedHost	./ctrlr/topogen.py	3;"	namespace
 cr	./ctrlr/html/d3.v3.min.js	2;"	function	function:ar
 Cr	./ctrlr/html/d3.v3.min.js	2;"	function	function:Fe
 CREATE	./ctrlr/ryu/lib/netconf/constants.py	76;"	variable
@@ -2121,6 +2125,7 @@ csum	./ctrlr/ryu/tests/unit/packet/test_icmpv6.py	996;"	variable	class:Test_icmp
 csum	./ctrlr/ryu/tests/unit/packet/test_ipv4.py	51;"	variable	class:Test_ipv4
 csum	./ctrlr/ryu/tests/unit/packet/test_tcp.py	44;"	variable	class:Test_tcp
 csum	./ctrlr/ryu/tests/unit/packet/test_udp.py	40;"	variable	class:Test_udp
+csv	./ctrlr/ryu/controller/ofp_handler.py	29;"	namespace
 cs_key	./ctrlr/ryu/app/rest_qos.py	23;"	namespace
 ctn_base	./ctrlr/ryu/tests/integrated/bgp/base.py	21;"	namespace
 ctn_base	./ctrlr/ryu/tests/integrated/bgp/base_ip6.py	21;"	namespace
@@ -2388,6 +2393,7 @@ db	./ctrlr/ryu/lib/ovs/vsctl.py	29;"	namespace
 db	./ctrlr/ryu/lib/ovs/vsctl.py	30;"	namespace
 db	./ctrlr/ryu/lib/ovs/vsctl.py	31;"	namespace
 DBClient	./ctrlr/ryu/lib/ovs/db_client.py	28;"	class
+dbinit	./ctrlr/ryu/cfg.py	89;"	function
 dblclicked	./ctrlr/html/d3.js	1453;"	function	function:d3.behavior.zoom
 db_get_map	./ctrlr/ryu/lib/ovs/bridge.py	248;"	member	class:OVSBridge
 db_get_val	./ctrlr/ryu/lib/ovs/bridge.py	242;"	member	class:OVSBridge
@@ -2704,7 +2710,7 @@ dialect	./ctrlr/ryu/lib/addrconv.py	40;"	variable
 dictify	./ctrlr/ryu/services/protocols/ovsdb/client.py	49;"	function
 dict_resp_formatter	./ctrlr/ryu/services/protocols/bgp/operator/command.py	139;"	member	class:Command
 DIGIT_PATTERN	./ctrlr/ryu/app/wsgi.py	44;"	variable
-DirectoryApp	./ctrlr/ex.py	29;"	namespace
+DirectoryApp	./ctrlr/ex.py	32;"	namespace
 DirectoryApp	./ctrlr/exctrl.py	27;"	namespace
 DirectoryApp	./ctrlr/rt.py	29;"	namespace
 DirectoryApp	./ctrlr/ryu/app/gui_topology/gui_topology.py	31;"	namespace
@@ -2718,6 +2724,7 @@ dispacher_change	./ctrlr/ryu/lib/stplib.py	245;"	member	class:Stp
 dispatch.of	./ctrlr/html/d3.js	464;"	function
 dispatcher_change	./ctrlr/ryu/controller/dpset.py	257;"	member	class:DPSet
 dispatcher_change	./ctrlr/ryu/tests/switch/tester.py	358;"	member	class:OfTester
+dispMatrix	./ctrlr/a.py	8;"	function
 dl_addr	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	540;"	variable	class:TestOFPActionSetDlSrc
 dl_addr	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	614;"	variable	class:TestOFPActionSetDlDst
 dl_dst	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	111;"	variable	class:TestOFPMatch
@@ -2778,7 +2785,7 @@ do_set_logical_switch_config	./ctrlr/ryu/cmd/of_config_cli.py	495;"	member	class
 do_set_port_config	./ctrlr/ryu/cmd/of_config_cli.py	262;"	member	class:Cmd
 do_set_queue_config	./ctrlr/ryu/cmd/of_config_cli.py	346;"	member	class:Cmd
 do_show_logical_switch	./ctrlr/ryu/cmd/of_config_cli.py	440;"	member	class:Cmd
-dpDealyDict	./ctrlr/ryu/cfg.py	50;"	variable
+dpDelay	./ctrlr/ryu/cfg.py	77;"	variable
 dpid	./ctrlr/ryu/lib/ofctl_utils.py	22;"	namespace
 dpidlib	./ctrlr/ryu/services/protocols/ovsdb/api.py	15;"	namespace
 dpidlib	./ctrlr/ryu/tests/unit/app/test_wsgi.py	28;"	namespace
@@ -2873,6 +2880,7 @@ DummyDatapath	./ctrlr/ryu/tests/unit/app/test_ofctl_rest.py	46;"	class
 DummyDatapath	./ctrlr/ryu/tests/unit/lib/test_ofctl.py	36;"	class
 DummyFile	./ctrlr/ryu/tests/unit/lib/test_pcaplib.py	186;"	class
 DummyOpenFlowApp	./ctrlr/ryu/tests/unit/cmd/dummy_openflow_app.py	21;"	class
+dumpNodeConnections	./ctrlr/topogen.py	5;"	namespace
 duration	./ctrlr/html/d3.v3.min.js	3;"	function
 duration_nsec	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	2092;"	variable	class:TestOFPFlowStats
 duration_sec	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	2091;"	variable	class:TestOFPFlowStats
@@ -2900,8 +2908,8 @@ echo	./ctrlr/ryu/lib/packet/icmpv6.py	616;"	class
 echo_data	./ctrlr/ryu/tests/unit/packet/test_icmp.py	35;"	variable	class:Test_icmp
 echo_id	./ctrlr/ryu/tests/unit/packet/test_icmp.py	33;"	variable	class:Test_icmp
 echo_replay_handler	./ctrlr/ryu/tests/integrated/test_request_reply_v12.py	997;"	member	class:RunTest
-echo_reply_handler	./ctrlr/ryu/controller/ofp_handler.py	247;"	member	class:OFPHandler
-echo_request_handler	./ctrlr/ryu/controller/ofp_handler.py	237;"	member	class:OFPHandler
+echo_reply_handler	./ctrlr/ryu/controller/ofp_handler.py	248;"	member	class:OFPHandler
+echo_request_handler	./ctrlr/ryu/controller/ofp_handler.py	238;"	member	class:OFPHandler
 echo_seq	./ctrlr/ryu/tests/unit/packet/test_icmp.py	34;"	variable	class:Test_icmp
 edges	./ctrlr/html/d3.v3.min.js	2;"	property	class:ar.o
 EDIT_CONFIG	./ctrlr/ryu/lib/netconf/constants.py	148;"	variable
@@ -3023,7 +3031,7 @@ ERROR_APP_TAG	./ctrlr/ryu/lib/netconf/constants.py	67;"	variable
 error_handler	./ctrlr/ryu/tests/integrated/test_request_reply_v12.py	1043;"	member	class:RunTest
 ERROR_INFO	./ctrlr/ryu/lib/netconf/constants.py	70;"	variable
 ERROR_MESSAGE	./ctrlr/ryu/lib/netconf/constants.py	69;"	variable
-error_msg_handler	./ctrlr/ryu/controller/ofp_handler.py	276;"	member	class:OFPHandler
+error_msg_handler	./ctrlr/ryu/controller/ofp_handler.py	302;"	member	class:OFPHandler
 error_msg_handler	./ctrlr/ryu/tests/switch/tester.py	1136;"	member	class:OfTester
 ERROR_OPTION	./ctrlr/ryu/lib/netconf/constants.py	139;"	variable
 ERROR_PATH	./ctrlr/ryu/lib/netconf/constants.py	68;"	variable
@@ -3360,13 +3368,13 @@ EVPN_ROUTE_TYPE	./ctrlr/ryu/services/protocols/bgp/bgpspeaker.py	26;"	namespace
 EVPN_VNI	./ctrlr/ryu/services/protocols/bgp/api/base.py	54;"	variable
 EVPN_VNI	./ctrlr/ryu/services/protocols/bgp/api/prefix.py	38;"	namespace
 EVPN_VNI	./ctrlr/ryu/services/protocols/bgp/bgpspeaker.py	36;"	namespace
-exAbout	./ctrlr/ex.py	57;"	member	class:exctrl
-exAbout	./ctrlr/ex.py	62;"	member	class:exctrl
+exAbout	./ctrlr/ex.py	60;"	member	class:exctrl
+exAbout	./ctrlr/ex.py	65;"	member	class:exctrl
 exAbout	./ctrlr/exctrl.py	53;"	member	class:exctrl
 exAbout	./ctrlr/exctrl.py	58;"	member	class:exctrl
 exAbout	./ctrlr/rt.py	56;"	member	class:exctrl
 ExampleSwitch13	./ctrlr/ryu/app/example_switch_13.py	25;"	class
-exapp	./ctrlr/ex.py	41;"	class
+exapp	./ctrlr/ex.py	44;"	class
 exapp	./ctrlr/exctrl.py	38;"	class
 exapp	./ctrlr/rt.py	41;"	class
 exc	./ctrlr/ryu/app/wsgi.py	30;"	namespace
@@ -3379,7 +3387,7 @@ exception	./ctrlr/ryu/ofproto/ofproto_v1_3_parser.py	52;"	namespace
 exception	./ctrlr/ryu/ofproto/ofproto_v1_5_parser.py	29;"	namespace
 exception	./ctrlr/ryu/tests/unit/ofproto/test_ofproto_parser.py	24;"	namespace
 exception	./ctrlr/ryu/tests/unit/ofproto/test_parser.py	32;"	namespace
-exctrl	./ctrlr/ex.py	50;"	class
+exctrl	./ctrlr/ex.py	53;"	class
 exctrl	./ctrlr/exctrl.py	46;"	class
 exctrl	./ctrlr/rt.py	49;"	class
 execute	./ctrlr/ryu/tests/integrated/common/docker_base.py	129;"	member	class:Command
@@ -3414,7 +3422,7 @@ ExtendedPrefixTLV	./ctrlr/ryu/lib/packet/ospf.py	476;"	class
 extent	./ctrlr/html/d3.v3.min.js	4;"	function
 ExternalNetwork	./ctrlr/ryu/lib/packet/ospf.py	407;"	class	class:ASExternalLSA
 EXTERNAL_CERTIFICATE	./ctrlr/ryu/lib/of_config/constants.py	335;"	variable
-ex_instance_name	./ctrlr/ex.py	37;"	variable
+ex_instance_name	./ctrlr/ex.py	40;"	variable
 ex_instance_name	./ctrlr/exctrl.py	34;"	variable
 ex_instance_name	./ctrlr/rt.py	37;"	variable
 F	./ctrlr/html/d3.v3.min.js	1;"	function	function:t
@@ -3576,6 +3584,7 @@ flow_removed_handler	./ctrlr/ryu/tests/integrated/test_request_reply_v12.py	1038
 flow_reply_handler	./ctrlr/ryu/tests/integrated/tester.py	143;"	member	class:TestFlowBase
 FLOW_STATISTICS	./ctrlr/ryu/lib/of_config/constants.py	234;"	variable
 FLOW_TABLE	./ctrlr/ryu/lib/of_config/constants.py	337;"	variable
+floyd	./ctrlr/ex.py	78;"	function
 FMS_EST_TRANS	./ctrlr/ryu/services/protocols/bgp/utils/stats.py	49;"	variable
 fmt	./ctrlr/ryu/tests/unit/ofproto/test_parser_v12.py	173;"	variable	class:TestOFPErrorMsg
 fmt	./ctrlr/ryu/tests/unit/ofproto/test_parser_v12.py	2787;"	variable	class:TestOFPInstructionGotoTable
@@ -3778,7 +3787,7 @@ getMilliseconds	./ctrlr/html/d3.v3.min.js	3;"	method	class:Hn
 getMinutes	./ctrlr/html/d3.v3.min.js	3;"	method	class:Hn
 getMonth	./ctrlr/html/d3.v3.min.js	3;"	method	class:Hn
 getopt	./ctrlr/ryu/tests/packet_data_generator3/gen.py	5;"	namespace
-getopt	./ctrlr/topogen.py	5;"	namespace
+getopt	./ctrlr/topogen.py	8;"	namespace
 getSeconds	./ctrlr/html/d3.v3.min.js	3;"	method	class:Hn
 GetStdHandle	./ctrlr/ryu/tests/test_lib.py	83;"	namespace
 gettext	./ctrlr/ryu/tests/test_lib.py	17;"	namespace
@@ -4232,7 +4241,7 @@ handler_datapath	./ctrlr/ryu/tests/mininet/packet_lib/arp/test_arp.py	193;"	memb
 handle_msg	./ctrlr/ryu/services/protocols/bgp/peer.py	1911;"	member	class:Peer
 HANDSHAKE_DISPATCHER	./ctrlr/ryu/controller/controller.py	47;"	namespace
 HANDSHAKE_DISPATCHER	./ctrlr/ryu/controller/handler.py	24;"	variable
-HANDSHAKE_DISPATCHER	./ctrlr/ryu/controller/ofp_handler.py	36;"	namespace
+HANDSHAKE_DISPATCHER	./ctrlr/ryu/controller/ofp_handler.py	37;"	namespace
 hard_timeout	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	2095;"	variable	class:TestOFPFlowStats
 hard_timeout	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	3051;"	variable	class:TestNXTFlowMod
 hard_timeout	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	4791;"	variable	class:TestOFPFlowMod
@@ -4266,7 +4275,7 @@ header	./ofplib.h	295;"	member	struct:ofp_packet_out	typeref:struct:ofp_packet_o
 header	./ofplib.h	307;"	member	struct:ofp_packet_in	typeref:struct:ofp_packet_in::ofp_header
 header_length	./ctrlr/ryu/tests/unit/packet/test_ipv4.py	41;"	variable	class:Test_ipv4
 HELLO	./ctrlr/ryu/lib/netconf/constants.py	100;"	variable
-hello_handler	./ctrlr/ryu/controller/ofp_handler.py	72;"	member	class:OFPHandler
+hello_handler	./ctrlr/ryu/controller/ofp_handler.py	73;"	member	class:OFPHandler
 help	./ctrlr/ryu/cmd/manager.py	39;"	variable
 help	./ctrlr/ryu/cmd/manager.py	41;"	variable
 help	./ctrlr/ryu/cmd/manager.py	44;"	variable
@@ -4350,16 +4359,15 @@ hops	./ctrlr/ryu/tests/unit/packet/test_dhcp.py	36;"	variable	class:Test_dhcp_of
 hop_opts	./ctrlr/ryu/lib/packet/ipv6.py	221;"	class
 HOST	./ctrlr/ryu/tests/integrated/test_of_config.py	129;"	variable
 Host	./ctrlr/ryu/topology/switches.py	163;"	class
-hosts	./ctrlr/topogen.py	88;"	variable
 HostState	./ctrlr/ryu/topology/switches.py	190;"	class
 host_bind_ip	./ctrlr/ryu/services/protocols/bgp/peer.py	386;"	member	class:Peer
 host_bind_ip	./ctrlr/ryu/services/protocols/bgp/rtconf/neighbors.py	439;"	member	class:NeighborConf
 host_bind_port	./ctrlr/ryu/services/protocols/bgp/peer.py	390;"	member	class:Peer
 host_bind_port	./ctrlr/ryu/services/protocols/bgp/rtconf/neighbors.py	443;"	member	class:NeighborConf
-host_discovery_packet_in_handler	./ctrlr/ryu/topology/switches.py	863;"	member	class:Switches
+host_discovery_packet_in_handler	./ctrlr/ryu/topology/switches.py	874;"	member	class:Switches
 HOST_IP	./ctrlr/ryu/tests/mininet/packet_lib/arp/test_arp.py	50;"	variable	class:RunTestMininet
 HOST_MAC	./ctrlr/ryu/tests/mininet/packet_lib/arp/test_arp.py	48;"	variable	class:RunTestMininet
-host_request_handler	./ctrlr/ryu/topology/switches.py	1039;"	member	class:Switches
+host_request_handler	./ctrlr/ryu/topology/switches.py	1050;"	member	class:Switches
 hr	./ctrlr/html/d3.v3.min.js	2;"	function	function:ar
 Hr	./ctrlr/html/d3.v3.min.js	2;"	function	function:jr
 hsl	./ctrlr/html/d3.v3.min.js	3;"	function
@@ -4378,7 +4386,7 @@ hub	./ctrlr/ryu/base/app_manager.py	40;"	namespace
 hub	./ctrlr/ryu/cmd/manager.py	19;"	namespace
 hub	./ctrlr/ryu/cmd/ofa_neutron_agent.py	25;"	namespace
 hub	./ctrlr/ryu/controller/controller.py	30;"	namespace
-hub	./ctrlr/ryu/controller/ofp_handler.py	30;"	namespace
+hub	./ctrlr/ryu/controller/ofp_handler.py	31;"	namespace
 hub	./ctrlr/ryu/lib/bfdlib.py	51;"	namespace
 hub	./ctrlr/ryu/lib/igmplib.py	31;"	namespace
 hub	./ctrlr/ryu/lib/ofctl_utils.py	23;"	namespace
@@ -5240,9 +5248,9 @@ link_del_handler	./ctrlr/ryu/topology/dumper.py	77;"	member	class:DiscoveryEvent
 link_down	./ctrlr/ryu/lib/stplib.py	459;"	member	class:Bridge
 link_down	./ctrlr/ryu/topology/switches.py	400;"	member	class:LinkState
 LINK_LLDP_DROP	./ctrlr/ryu/topology/switches.py	519;"	variable	class:Switches
-link_loop	./ctrlr/ryu/topology/switches.py	976;"	member	class:Switches
+link_loop	./ctrlr/ryu/topology/switches.py	987;"	member	class:Switches
 link_reply_handler	./ctrlr/ryu/topology/dumper.py	162;"	member	class:DiscoveryEventDumper
-link_request_handler	./ctrlr/ryu/topology/switches.py	1027;"	member	class:Switches
+link_request_handler	./ctrlr/ryu/topology/switches.py	1038;"	member	class:Switches
 LINK_TIMEOUT	./ctrlr/ryu/topology/switches.py	518;"	variable	class:Switches
 link_trace	./ctrlr/ryu/lib/packet/cfm.py	471;"	class
 link_trace_message	./ctrlr/ryu/lib/packet/cfm.py	496;"	class
@@ -5282,11 +5290,11 @@ lldp	./ctrlr/ryu/lib/packet/__init__.py	6;"	namespace
 lldp	./ctrlr/ryu/tests/unit/packet/test_lldp.py	28;"	namespace
 lldp	./ctrlr/ryu/topology/switches.py	33;"	namespace
 LLDPBasicTLV	./ctrlr/ryu/lib/packet/lldp.py	74;"	class
-lldpDealyDict	./ctrlr/ryu/cfg.py	49;"	variable
+lldpDelay	./ctrlr/ryu/cfg.py	76;"	variable
 LLDPPacket	./ctrlr/ryu/topology/switches.py	425;"	class
 LLDPUnknownFormat	./ctrlr/ryu/topology/switches.py	435;"	class	class:LLDPPacket
 lldp_dropped	./ctrlr/ryu/topology/switches.py	266;"	member	class:PortData
-lldp_loop	./ctrlr/ryu/topology/switches.py	944;"	member	class:Switches
+lldp_loop	./ctrlr/ryu/topology/switches.py	955;"	member	class:Switches
 LLDP_MAC_NEAREST_BRIDGE	./ctrlr/ryu/lib/packet/lldp.py	49;"	variable
 LLDP_MAC_NEAREST_CUSTOMER_BRIDGE	./ctrlr/ryu/lib/packet/lldp.py	51;"	variable
 LLDP_MAC_NEAREST_NON_TPMR_BRIDGE	./ctrlr/ryu/lib/packet/lldp.py	50;"	variable
@@ -5349,7 +5357,7 @@ LOCAL_ROUTES	./ctrlr/ryu/services/protocols/bgp/utils/stats.py	42;"	variable
 location	./ctrlr/html/d3.js	1309;"	function	function:d3.behavior.zoom
 LOCK	./ctrlr/ryu/lib/netconf/constants.py	157;"	variable
 LOCK_DENIED	./ctrlr/ryu/lib/netconf/constants.py	40;"	variable
-LOG	./ctrlr/ex.py	27;"	variable
+LOG	./ctrlr/ex.py	30;"	variable
 LOG	./ctrlr/exctrl.py	25;"	variable
 LOG	./ctrlr/rt.py	27;"	variable
 LOG	./ctrlr/ryu/app/ofctl_rest.py	41;"	variable
@@ -5503,7 +5511,7 @@ LOG	./ctrlr/ryu/topology/event.py	20;"	variable
 LOG	./ctrlr/ryu/topology/switches.py	43;"	variable
 LOG	./ctrlr/ryu/utils.py	41;"	variable
 logd	./ctrlr/ryu/services/protocols/bgp/utils/stats.py	95;"	function
-logging	./ctrlr/ex.py	26;"	namespace
+logging	./ctrlr/ex.py	29;"	namespace
 logging	./ctrlr/exctrl.py	24;"	namespace
 logging	./ctrlr/rt.py	26;"	namespace
 logging	./ctrlr/ryu/app/ofctl_rest.py	16;"	namespace
@@ -5755,6 +5763,7 @@ magic_cookie	./ctrlr/ryu/tests/unit/packet/test_dhcp.py	56;"	variable	class:Test
 magic_cookie	./ctrlr/ryu/tests/unit/packet/test_dhcp.py	58;"	variable	class:Test_dhcp_offer
 MAGIC_NUMBER_IDENTICAL	./ctrlr/ryu/lib/pcaplib.py	83;"	variable	class:PcapFileHdr
 MAGIC_NUMBER_SWAPPED	./ctrlr/ryu/lib/pcaplib.py	84;"	variable	class:PcapFileHdr
+main	./ctrlr/a.py	35;"	function
 main	./ctrlr/html/ryu.topology.js	277;"	function
 main	./ctrlr/ryu/app/gui_topology/html/ryu.topology.js	277;"	function
 main	./ctrlr/ryu/cmd/manager.py	49;"	function
@@ -5764,7 +5773,6 @@ main	./ctrlr/ryu/cmd/rpc_cli.py	224;"	function
 main	./ctrlr/ryu/cmd/ryu_base.py	60;"	function
 main	./ctrlr/ryu/lib/ovs/vsctl.py	2302;"	function
 main	./ctrlr/ryu/tests/unit/cmd/test_manager.py	29;"	namespace
-main	./ctrlr/topogen.py	18;"	function
 main	./ex.c	20;"	function
 main	./main.c	17;"	function	signature:(int argc,char *argv[])
 MAIN_DISPATCHER	./ctrlr/ryu/app/cbench.py	24;"	namespace
@@ -5787,7 +5795,7 @@ MAIN_DISPATCHER	./ctrlr/ryu/app/simple_switch_snort.py	22;"	namespace
 MAIN_DISPATCHER	./ctrlr/ryu/app/simple_switch_stp.py	19;"	namespace
 MAIN_DISPATCHER	./ctrlr/ryu/app/simple_switch_stp_13.py	18;"	namespace
 MAIN_DISPATCHER	./ctrlr/ryu/controller/handler.py	26;"	variable
-MAIN_DISPATCHER	./ctrlr/ryu/controller/ofp_handler.py	36;"	namespace
+MAIN_DISPATCHER	./ctrlr/ryu/controller/ofp_handler.py	37;"	namespace
 MAIN_DISPATCHER	./ctrlr/ryu/lib/bfdlib.py	45;"	namespace
 MAIN_DISPATCHER	./ctrlr/ryu/lib/igmplib.py	23;"	namespace
 MAIN_DISPATCHER	./ctrlr/ryu/lib/lacplib.py	21;"	namespace
@@ -5843,7 +5851,6 @@ map	./ctrlr/html/d3.js	304;"	function	function:d3.nest
 map	./ctrlr/html/d3.v3.min.js	3;"	function
 map	./ctrlr/ryu/services/protocols/bgp/info_base/vrf.py	82;"	namespace
 Mapper	./ctrlr/ryu/app/wsgi.py	20;"	namespace
-martix	./ctrlr/topogen.py	9;"	function
 mask	./ctrlr/ryu/tests/unit/ofproto/test_parser_v12.py	4051;"	variable	class:TestOFPPortMod
 mask_ntob	./ctrlr/ryu/app/rest_router.py	1884;"	function
 MASTER	./ctrlr/ryu/lib/of_config/constants.py	307;"	variable
@@ -5881,7 +5888,7 @@ match_vid_to_str	./ctrlr/ryu/lib/ofctl_utils.py	59;"	function
 match_vid_to_str	./ctrlr/ryu/lib/ofctl_v1_2.py	385;"	function
 math	./ctrlr/ryu/tests/switch/tester.py	20;"	namespace
 math	./ctrlr/ryu/tests/unit/app/test_tester.py	25;"	namespace
-math	./ctrlr/topogen.py	6;"	namespace
+math	./ctrlr/topogen.py	9;"	namespace
 MAX	./ctrlr/ryu/lib/packet/bgp.py	1054;"	variable	class:EvpnEsi
 MaxPrefixReached	./ctrlr/ryu/lib/packet/bgp.py	522;"	class
 maxresp	./ctrlr/ryu/tests/unit/packet/test_icmpv6.py	1097;"	variable	class:Test_icmpv6_membership_report
@@ -6041,6 +6048,7 @@ mi	./ctrlr/html/d3.v3.min.js	2;"	function	function:pi
 min	./ctrlr/ryu/controller/controller.py	75;"	variable
 Mininet	./ctrlr/ryu/tests/integrated/run_tests_with_ovs12.py	25;"	namespace
 Mininet	./ctrlr/ryu/tests/switch/run_mininet.py	6;"	namespace
+Mininet	./ctrlr/topogen.py	2;"	namespace
 minorExtent	./ctrlr/html/d3.v3.min.js	4;"	function
 minorStep	./ctrlr/html/d3.v3.min.js	4;"	function
 MIN_LEN	./ctrlr/ryu/lib/packet/igmp.py	255;"	variable	class:igmpv3_query
@@ -6286,7 +6294,8 @@ MULTICAST	./ctrlr/ryu/lib/mac.py	33;"	variable
 MULTICAST	./ctrlr/ryu/lib/packet/safi.py	23;"	variable
 MULTICAST_IP_ALL_HOST	./ctrlr/ryu/lib/packet/igmp.py	139;"	variable
 MULTICAST_MAC_ALL_HOST	./ctrlr/ryu/lib/packet/igmp.py	140;"	variable
-multipart_reply_handler	./ctrlr/ryu/controller/ofp_handler.py	222;"	member	class:OFPHandler
+multipart_reply_handler	./ctrlr/ryu/controller/ofp_handler.py	223;"	member	class:OFPHandler
+multiprocessing	./ctrlr/ex.py	27;"	namespace
 MultiStrOpt	./ctrlr/ryu/cfg.py	42;"	namespace
 MULTI_EXIT_DISC	./ctrlr/ryu/services/protocols/bgp/bgpspeaker.py	66;"	namespace
 MULTI_EXIT_DISC	./ctrlr/ryu/services/protocols/bgp/rtconf/base.py	64;"	variable
@@ -8268,7 +8277,7 @@ OFPG_MAX	./ctrlr/ryu/ofproto/ofproto_v1_2.py	364;"	variable
 OFPG_MAX	./ctrlr/ryu/ofproto/ofproto_v1_3.py	390;"	variable
 OFPG_MAX	./ctrlr/ryu/ofproto/ofproto_v1_4.py	561;"	variable
 OFPG_MAX	./ctrlr/ryu/ofproto/ofproto_v1_5.py	649;"	variable
-OFPHandler	./ctrlr/ryu/controller/ofp_handler.py	54;"	class
+OFPHandler	./ctrlr/ryu/controller/ofp_handler.py	55;"	class
 OFPHello	./ctrlr/ryu/ofproto/ofproto_v1_0_parser.py	1184;"	class
 OFPHello	./ctrlr/ryu/ofproto/ofproto_v1_2_parser.py	65;"	class
 OFPHello	./ctrlr/ryu/ofproto/ofproto_v1_3_parser.py	90;"	class
@@ -9125,7 +9134,7 @@ ofproto_common	./ctrlr/ryu/ofproto/oxm_fields.py	78;"	namespace
 ofproto_common	./ctrlr/ryu/ofproto/oxx_fields.py	29;"	namespace
 ofproto_common	./ctrlr/ryu/tests/unit/ofproto/test_ofproto_parser.py	26;"	namespace
 ofproto_parser	./ctrlr/ryu/controller/controller.py	41;"	namespace
-ofproto_parser	./ctrlr/ryu/controller/ofp_handler.py	37;"	namespace
+ofproto_parser	./ctrlr/ryu/controller/ofp_handler.py	38;"	namespace
 ofproto_parser	./ctrlr/ryu/ofproto/nx_match.py	24;"	namespace
 ofproto_parser	./ctrlr/ryu/ofproto/ofproto_v1_0_parser.py	35;"	namespace
 ofproto_parser	./ctrlr/ryu/ofproto/ofproto_v1_2_parser.py	33;"	namespace
@@ -10153,7 +10162,7 @@ ofp_event	./ctrlr/ryu/app/simple_switch_stp_13.py	17;"	namespace
 ofp_event	./ctrlr/ryu/app/simple_switch_websocket_13.py	51;"	namespace
 ofp_event	./ctrlr/ryu/controller/controller.py	46;"	namespace
 ofp_event	./ctrlr/ryu/controller/dpset.py	29;"	namespace
-ofp_event	./ctrlr/ryu/controller/ofp_handler.py	32;"	namespace
+ofp_event	./ctrlr/ryu/controller/ofp_handler.py	33;"	namespace
 ofp_event	./ctrlr/ryu/lib/bfdlib.py	44;"	namespace
 ofp_event	./ctrlr/ryu/lib/igmplib.py	21;"	namespace
 ofp_event	./ctrlr/ryu/lib/lacplib.py	20;"	namespace
@@ -10948,7 +10957,7 @@ OFP_VERSIONS	./ctrlr/ryu/app/rest_router.py	211;"	variable	class:RestRouterAPI
 OFP_VERSIONS	./ctrlr/ryu/app/rest_vtep.py	382;"	variable	class:RestVtep
 OFP_VERSIONS	./ctrlr/ryu/app/simple_switch.py	33;"	variable	class:SimpleSwitch
 OFP_VERSIONS	./ctrlr/ryu/app/simple_switch_12.py	27;"	variable	class:SimpleSwitch12
-OFP_VERSIONS	./ctrlr/ryu/app/simple_switch_13.py	27;"	variable	class:SimpleSwitch13
+OFP_VERSIONS	./ctrlr/ryu/app/simple_switch_13.py	28;"	variable	class:SimpleSwitch13
 OFP_VERSIONS	./ctrlr/ryu/app/simple_switch_14.py	27;"	variable	class:SimpleSwitch14
 OFP_VERSIONS	./ctrlr/ryu/app/simple_switch_igmp.py	28;"	variable	class:SimpleSwitchIgmp
 OFP_VERSIONS	./ctrlr/ryu/app/simple_switch_igmp_13.py	30;"	variable	class:SimpleSwitchIgmp13
@@ -11128,7 +11137,7 @@ opcode	./ctrlr/ryu/tests/unit/packet/test_arp.py	42;"	variable	class:Test_arp
 OpenFlowBasic	./ctrlr/ryu/ofproto/oxm_fields.py	99;"	class
 OpenFlowBasic	./ctrlr/ryu/ofproto/oxs_fields.py	90;"	class
 OpenFlowController	./ctrlr/ryu/controller/controller.py	80;"	class
-OpenFlowController	./ctrlr/ryu/controller/ofp_handler.py	33;"	namespace
+OpenFlowController	./ctrlr/ryu/controller/ofp_handler.py	34;"	namespace
 OpenFlowSw	./ctrlr/ryu/tests/switch/tester.py	1144;"	class
 OPERATION	./ctrlr/ryu/lib/netconf/constants.py	73;"	variable
 OPERATION	./ctrlr/ryu/lib/of_config/constants.py	22;"	variable
@@ -11170,6 +11179,8 @@ option_type	./ctrlr/ryu/lib/packet/icmpv6.py	395;"	member	class:nd_option
 option_type	./ctrlr/ryu/lib/packet/icmpv6.py	498;"	member	class:nd_option_sla
 option_type	./ctrlr/ryu/lib/packet/icmpv6.py	536;"	member	class:nd_option_tla
 option_type	./ctrlr/ryu/lib/packet/icmpv6.py	581;"	member	class:nd_option_pi
+optrecod	./ctrlr/ryu/cfg.py	51;"	function
+optrecodbatch	./ctrlr/ryu/cfg.py	64;"	function
 opts	./ctrlr/ryu/services/protocols/ovsdb/manager.py	27;"	variable
 opts	./ctrlr/ryu/tests/switch/run_mininet.py	18;"	variable
 opt_args	./ctrlr/ryu/services/protocols/bgp/api/prefix.py	198;"	variable
@@ -12491,7 +12502,7 @@ password	./ctrlr/ryu/services/protocols/bgp/rtconf/neighbors.py	451;"	member	cla
 PASSWORD	./ctrlr/ryu/services/protocols/bgp/rtconf/neighbors.py	85;"	variable
 PASSWORD	./ctrlr/ryu/tests/integrated/test_of_config.py	132;"	variable
 patch	./ctrlr/ryu/lib/hub.py	42;"	variable
-PATH	./ctrlr/ex.py	38;"	variable
+PATH	./ctrlr/ex.py	41;"	variable
 PATH	./ctrlr/exctrl.py	35;"	variable
 PATH	./ctrlr/rt.py	38;"	variable
 PATH	./ctrlr/ryu/app/gui_topology/gui_topology.py	37;"	variable
@@ -12534,6 +12545,7 @@ PCAP_PACKET_DATA_DIR	./ctrlr/ryu/tests/unit/lib/test_pcaplib.py	37;"	variable
 pcp	./ctrlr/ryu/tests/unit/packet/test_pbb.py	37;"	variable	class:Test_itag
 pcp	./ctrlr/ryu/tests/unit/packet/test_vlan.py	148;"	variable	class:Test_svlan
 pcp	./ctrlr/ryu/tests/unit/packet/test_vlan.py	38;"	variable	class:Test_vlan
+pcs	./ctrlr/ex.py	165;"	variable
 pe	./ctrlr/html/d3.v3.min.js	2;"	function	function:r
 peek_notification	./ctrlr/ryu/lib/rpc.py	306;"	member	class:Client
 Peer	./ctrlr/ryu/cmd/of_config_cli.py	46;"	class
@@ -12744,7 +12756,7 @@ PORT_STATE_FORWARD	./ctrlr/ryu/lib/stplib.py	96;"	variable
 PORT_STATE_LEARN	./ctrlr/ryu/lib/stplib.py	95;"	variable
 PORT_STATE_LISTEN	./ctrlr/ryu/lib/stplib.py	94;"	variable
 port_status_handler	./ctrlr/ryu/controller/dpset.py	274;"	member	class:DPSet
-port_status_handler	./ctrlr/ryu/controller/ofp_handler.py	257;"	member	class:OFPHandler
+port_status_handler	./ctrlr/ryu/controller/ofp_handler.py	283;"	member	class:OFPHandler
 port_status_handler	./ctrlr/ryu/lib/stplib.py	281;"	member	class:Stp
 port_status_handler	./ctrlr/ryu/tests/integrated/test_request_reply_v12.py	1029;"	member	class:RunTest
 port_status_handler	./ctrlr/ryu/topology/switches.py	700;"	member	class:Switches
@@ -13037,7 +13049,7 @@ random	./ctrlr/ryu/lib/packet/dhcp.py	56;"	namespace
 random	./ctrlr/ryu/tests/integrated/vrrp_common.py	20;"	namespace
 random	./ctrlr/ryu/tests/unit/controller/test_controller.py	111;"	variable	class:Test_Datapath.test_recv_loop.SocketMock
 random	./ctrlr/ryu/tests/unit/controller/test_controller.py	29;"	namespace
-random	./ctrlr/topogen.py	7;"	namespace
+random	./ctrlr/topogen.py	10;"	namespace
 range	./ctrlr/html/d3.v3.min.js	2;"	function
 rangeBand	./ctrlr/html/d3.v3.min.js	2;"	function
 rangeBands	./ctrlr/html/d3.v3.min.js	2;"	function
@@ -13068,6 +13080,7 @@ re	./ctrlr/ryu/services/protocols/bgp/operator/command.py	5;"	namespace
 re	./ctrlr/ryu/services/protocols/bgp/utils/validation.py	20;"	namespace
 re	./ctrlr/ryu/utils.py	37;"	namespace
 Reader	./ctrlr/ryu/lib/pcaplib.py	193;"	class
+readMatrix	./ctrlr/a.py	4;"	function
 read_request_handler	./ctrlr/ryu/services/protocols/ovsdb/client.py	444;"	member	class:RemoteOvsdb
 read_request_handler	./ctrlr/ryu/services/protocols/ovsdb/manager.py	214;"	member	class:OVSDB
 really_diff	./ctrlr/ryu/services/protocols/bgp/info_base/vrf.py	373;"	function	function:VrfDest._new_best_path
@@ -13306,7 +13319,7 @@ RESOURCE_ID	./ctrlr/ryu/services/protocols/bgp/info_base/vrf.py	49;"	namespace
 RESOURCE_ID	./ctrlr/ryu/services/protocols/bgp/utils/stats.py	32;"	variable
 RESOURCE_NAME	./ctrlr/ryu/services/protocols/bgp/info_base/vrf.py	50;"	namespace
 RESOURCE_NAME	./ctrlr/ryu/services/protocols/bgp/utils/stats.py	33;"	variable
-Response	./ctrlr/ex.py	30;"	namespace
+Response	./ctrlr/ex.py	33;"	namespace
 Response	./ctrlr/exctrl.py	28;"	namespace
 Response	./ctrlr/rt.py	30;"	namespace
 Response	./ctrlr/ryu/app/ofctl_rest.py	20;"	namespace
@@ -13558,7 +13571,7 @@ rotate	./ctrlr/html/d3.v3.min.js	2;"	function
 round	./ctrlr/html/d3.v3.min.js	3;"	function
 round_up	./ctrlr/ryu/ofproto/nx_match.py	1185;"	function
 round_up	./ctrlr/ryu/utils.py	122;"	function
-route	./ctrlr/ex.py	32;"	namespace
+route	./ctrlr/ex.py	35;"	namespace
 route	./ctrlr/exctrl.py	30;"	namespace
 route	./ctrlr/rt.py	32;"	namespace
 route	./ctrlr/ryu/app/gui_topology/gui_topology.py	33;"	namespace
@@ -13735,6 +13748,7 @@ RT	./ctrlr/ryu/services/protocols/bgp/core_managers/table_manager.py	404;"	names
 rt	./ctrlr/ryu/services/protocols/bgp/operator/views/other.py	16;"	variable	class:ImportmapDetailView
 RT	./ctrlr/ryu/services/protocols/bgp/rtconf/vrfs.py	75;"	namespace
 RT	./ctrlr/ryu/services/protocols/bgp/rtconf/vrfs.py	92;"	namespace
+rtCalculator	./ctrlr/ryu/app/simple_switch_13.py	68;"	member	class:SimpleSwitch13
 RtcDest	./ctrlr/ryu/services/protocols/bgp/info_base/rtc.py	56;"	class
 rtconf	./ctrlr/ryu/services/protocols/bgp/api/all.py	8;"	namespace
 rtconf	./ctrlr/ryu/services/protocols/bgp/rtconf/common.py	25;"	namespace
@@ -13750,6 +13764,7 @@ RTC_AS	./ctrlr/ryu/services/protocols/bgp/rtconf/neighbors.py	63;"	namespace
 rtc_as_set	./ctrlr/ryu/services/protocols/bgp/rtconf/neighbors.py	672;"	member	class:NeighborsConf
 RTC_EOR_DEFAULT_TIME	./ctrlr/ryu/services/protocols/bgp/constants.py	50;"	variable
 RTC_EOR_TIMER_NAME	./ctrlr/ryu/services/protocols/bgp/peer.py	292;"	variable	class:Peer
+rttbl	./ctrlr/ryu/cfg.py	78;"	variable
 rt_list	./ctrlr/ryu/lib/packet/bgp.py	2888;"	member	class:BGPPathAttributeExtendedCommunities
 rt_manager	./ctrlr/ryu/services/protocols/bgp/core.py	176;"	member	class:CoreService
 Ru	./ctrlr/html/d3.v3.min.js	2;"	function	function:function
@@ -13944,7 +13959,7 @@ send_flow_stats	./ctrlr/ryu/tests/switch/tester.py	1242;"	member	class:OpenFlowS
 send_group_desc_stats	./ctrlr/ryu/tests/switch/tester.py	1264;"	member	class:OpenFlowSw
 send_icmp	./ctrlr/ryu/app/rest_router.py	1512;"	member	class:OfCtl
 send_icmp_unreach_error	./ctrlr/ryu/app/rest_router.py	1146;"	member	class:VlanRouter
-send_lldp_packet	./ctrlr/ryu/topology/switches.py	913;"	member	class:Switches
+send_lldp_packet	./ctrlr/ryu/topology/switches.py	924;"	member	class:Switches
 send_message	./ctrlr/ryu/app/wsgi.py	174;"	member	class:WebSocketClientTransport
 send_meter_config_stats	./ctrlr/ryu/tests/switch/tester.py	1255;"	member	class:OpenFlowSw
 send_msg	./ctrlr/ryu/app/ofctl/api.py	38;"	function
@@ -14438,6 +14453,7 @@ setdefault_dpid	./ctrlr/ryu/controller/network.py	208;"	member	class:DPIDs
 setdefault_network	./ctrlr/ryu/controller/network.py	216;"	member	class:DPIDs
 setFullYear	./ctrlr/html/d3.v3.min.js	3;"	method	class:Hn
 setHours	./ctrlr/html/d3.v3.min.js	3;"	method	class:Hn
+setLogLevel	./ctrlr/topogen.py	6;"	namespace
 setMacAddress	./commonlib.h	147;"	function	signature:(uint8_t* v_mac,uint8_t v_a0,uint8_t v_a1,uint8_t v_a2,uint8_t v_a3,uint8_t v_a4,uint8_t v_a5)
 setMilliseconds	./ctrlr/html/d3.v3.min.js	3;"	method	class:Hn
 setMinutes	./ctrlr/html/d3.v3.min.js	3;"	method	class:Hn
@@ -14778,7 +14794,7 @@ set_ev_cls	./ctrlr/ryu/tests/switch/tester.py	34;"	namespace
 set_ev_cls	./ctrlr/ryu/tests/unit/app/test_tester.py	49;"	namespace
 set_ev_cls	./ctrlr/ryu/topology/switches.py	25;"	namespace
 set_ev_handler	./ctrlr/ryu/controller/handler.py	86;"	function
-set_ev_handler	./ctrlr/ryu/controller/ofp_handler.py	34;"	namespace
+set_ev_handler	./ctrlr/ryu/controller/ofp_handler.py	35;"	namespace
 set_expected_value	./ctrlr/ryu/tests/unit/lib/test_ofctl_action_match.py	745;"	member	class:test_data_v1_2
 set_external_id	./ctrlr/ryu/services/protocols/ovsdb/api.py	247;"	function
 SET_FIELD	./ctrlr/ryu/lib/ofctl_utils.py	43;"	variable
@@ -15013,7 +15029,7 @@ SimpleMonitor13	./ctrlr/ryu/app/simple_monitor_13.py	25;"	class
 SimplePassword	./ctrlr/ryu/lib/packet/bfd.py	362;"	class
 SimpleSwitch	./ctrlr/ryu/app/simple_switch.py	32;"	class
 SimpleSwitch12	./ctrlr/ryu/app/simple_switch_12.py	26;"	class
-SimpleSwitch13	./ctrlr/ryu/app/simple_switch_13.py	26;"	class
+SimpleSwitch13	./ctrlr/ryu/app/simple_switch_13.py	27;"	class
 SimpleSwitch13	./ctrlr/ryu/app/simple_switch_stp_13.py	28;"	class
 SimpleSwitch14	./ctrlr/ryu/app/simple_switch_14.py	26;"	class
 SimpleSwitchController	./ctrlr/ryu/app/simple_switch_rest_13.py	75;"	class
@@ -15026,7 +15042,7 @@ SimpleSwitchSnort	./ctrlr/ryu/app/simple_switch_snort.py	32;"	class
 SimpleSwitchStp	./ctrlr/ryu/app/simple_switch_stp.py	27;"	class
 SimpleSwitchWebSocket13	./ctrlr/ryu/app/simple_switch_websocket_13.py	61;"	class
 SimpleSwitchWebSocketController	./ctrlr/ryu/app/simple_switch_websocket_13.py	88;"	class
-simple_switch_13	./ctrlr/ex.py	34;"	namespace
+simple_switch_13	./ctrlr/ex.py	37;"	namespace
 simple_switch_13	./ctrlr/exctrl.py	32;"	namespace
 simple_switch_13	./ctrlr/ryu/app/simple_monitor_13.py	18;"	namespace
 simple_switch_13	./ctrlr/ryu/app/simple_switch_igmp_13.py	26;"	namespace
@@ -15218,6 +15234,7 @@ specific_data	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	5504;"	variable	
 specific_data_after	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	2439;"	variable	class:TestOFPVendorStats
 sphere	./ctrlr/html/d3.v3.min.js	4;"	property	class:c.Ea
 sphere	./ctrlr/html/d3.v3.min.js	4;"	property	class:geo.length.Ja
+sqlite3	./ctrlr/ryu/cfg.py	49;"	namespace
 sr	./ctrlr/html/d3.v3.min.js	2;"	function	function:ar
 Sr	./ctrlr/html/d3.v3.min.js	2;"	function	function:He
 src	./ctrlr/ryu/services/protocols/bgp/rtconf/base.py	506;"	member	class:ConfEvent
@@ -15261,7 +15278,7 @@ SS_MAXSIZE	./ctrlr/ryu/services/protocols/vrrp/monitor_linux.py	34;"	variable
 start	./ctrlr/html/d3.v3.min.js	4;"	method
 start	./ctrlr/ryu/app/bmpstation.py	42;"	member	class:BMPStation
 start	./ctrlr/ryu/base/app_manager.py	174;"	member	class:RyuApp
-start	./ctrlr/ryu/controller/ofp_handler.py	59;"	member	class:OFPHandler
+start	./ctrlr/ryu/controller/ofp_handler.py	60;"	member	class:OFPHandler
 start	./ctrlr/ryu/lib/stplib.py	1094;"	member	class:PortThread
 start	./ctrlr/ryu/services/protocols/bgp/api/core.py	31;"	function
 start	./ctrlr/ryu/services/protocols/bgp/application.py	99;"	member	class:RyuBGPSpeaker
@@ -15325,7 +15342,7 @@ STATE_TESTER_PKT_COUNT	./ctrlr/ryu/tests/switch/tester.py	135;"	variable
 STATE_THROUGHPUT_CHK	./ctrlr/ryu/tests/switch/tester.py	148;"	variable
 STATE_THROUGHPUT_FLOW_EXIST_CHK	./ctrlr/ryu/tests/switch/tester.py	146;"	variable
 STATE_THROUGHPUT_FLOW_INSTALL	./ctrlr/ryu/tests/switch/tester.py	145;"	variable
-static_handler	./ctrlr/ex.py	67;"	member	class:exctrl
+static_handler	./ctrlr/ex.py	70;"	member	class:exctrl
 static_handler	./ctrlr/exctrl.py	63;"	member	class:exctrl
 static_handler	./ctrlr/rt.py	61;"	member	class:exctrl
 static_handler	./ctrlr/ryu/app/gui_topology/gui_topology.py	60;"	member	class:GUIServerController
@@ -15691,22 +15708,21 @@ switches	./ctrlr/ryu/app/ws_topology.py	48;"	namespace
 switches	./ctrlr/ryu/cmd/manager.py	33;"	namespace
 switches	./ctrlr/ryu/topology/dumper.py	24;"	namespace
 Switches	./ctrlr/ryu/topology/switches.py	502;"	class
-switches	./ctrlr/topogen.py	90;"	variable
 SWITCHID_PATTERN	./ctrlr/ryu/app/rest_firewall.py	144;"	variable
 SWITCHID_PATTERN	./ctrlr/ryu/app/rest_qos.py	186;"	variable
 SWITCHID_PATTERN	./ctrlr/ryu/app/rest_router.py	122;"	variable
 switch_enter_handler	./ctrlr/ryu/topology/dumper.py	53;"	member	class:DiscoveryEventDumper
 switch_features_handler	./ctrlr/ryu/app/example_switch_13.py	34;"	member	class:ExampleSwitch13
-switch_features_handler	./ctrlr/ryu/app/simple_switch_13.py	34;"	member	class:SimpleSwitch13
+switch_features_handler	./ctrlr/ryu/app/simple_switch_13.py	36;"	member	class:SimpleSwitch13
 switch_features_handler	./ctrlr/ryu/app/simple_switch_14.py	34;"	member	class:SimpleSwitch14
 switch_features_handler	./ctrlr/ryu/app/simple_switch_rest_13.py	42;"	member	class:SimpleSwitchRest13
 switch_features_handler	./ctrlr/ryu/app/simple_switch_snort.py	77;"	member	class:SimpleSwitchSnort
 switch_features_handler	./ctrlr/ryu/controller/dpset.py	266;"	member	class:DPSet
-switch_features_handler	./ctrlr/ryu/controller/ofp_handler.py	197;"	member	class:OFPHandler
+switch_features_handler	./ctrlr/ryu/controller/ofp_handler.py	198;"	member	class:OFPHandler
 switch_features_handler	./ctrlr/ryu/lib/bfdlib.py	706;"	member	class:BFDLib
 switch_leave_handler	./ctrlr/ryu/topology/dumper.py	57;"	member	class:DiscoveryEventDumper
 switch_reply_handler	./ctrlr/ryu/topology/dumper.py	118;"	member	class:DiscoveryEventDumper
-switch_request_handler	./ctrlr/ryu/topology/switches.py	1011;"	member	class:Switches
+switch_request_handler	./ctrlr/ryu/topology/switches.py	1022;"	member	class:Switches
 switch_type	./ctrlr/ryu/tests/switch/run_mininet.py	28;"	variable
 sw_desc	./ctrlr/ryu/tests/unit/ofproto/test_parser_v10.py	2023;"	variable	class:TestOFPDescStats
 sw_desc	./ctrlr/ryu/tests/unit/ofproto/test_parser_v12.py	4504;"	variable	class:TestOFPDescStats
@@ -15752,7 +15768,7 @@ sys	./ctrlr/ryu/tests/unit/ofproto/test_parser_compat.py	20;"	namespace
 sys	./ctrlr/ryu/tests/unit/ofproto/test_parser_ofpstats.py	24;"	namespace
 sys	./ctrlr/ryu/tests/unit/packet/test_bgp.py	21;"	namespace
 sys	./ctrlr/ryu/utils.py	36;"	namespace
-sys	./ctrlr/topogen.py	4;"	namespace
+sys	./ctrlr/topogen.py	7;"	namespace
 system	./ctrlr/ryu/lib/sockaddr.py	24;"	variable
 SystemCapabilities	./ctrlr/ryu/lib/packet/lldp.py	365;"	class
 SystemDescription	./ctrlr/ryu/lib/packet/lldp.py	339;"	class
@@ -15821,6 +15837,7 @@ target_ver	./ctrlr/ryu/tests/switch/tester.py	271;"	variable	class:OfTester
 TaskExit	./ctrlr/ryu/lib/hub.py	105;"	variable
 tci	./ctrlr/ryu/tests/unit/packet/test_vlan.py	151;"	variable	class:Test_svlan
 tci	./ctrlr/ryu/tests/unit/packet/test_vlan.py	41;"	variable	class:Test_vlan
+TCLink	./ctrlr/topogen.py	4;"	namespace
 TCP	./ctrlr/ryu/app/rest_router.py	113;"	variable
 tcp	./ctrlr/ryu/app/rest_router.py	44;"	namespace
 TCP	./ctrlr/ryu/lib/of_config/constants.py	315;"	variable
@@ -18859,11 +18876,14 @@ to	./ctrlr/ryu/services/protocols/bgp/rtconf/vrfs.py	92;"	namespace
 To	./ctrlr/ryu/tests/unit/controller/test_controller.py	31;"	namespace
 TooSmallException	./ctrlr/ryu/lib/packet/stream_parser.py	34;"	class	class:StreamParser
 TOO_BIG	./ctrlr/ryu/lib/netconf/constants.py	31;"	variable
+Topo	./ctrlr/topogen.py	1;"	namespace
+topoEx	./ctrlr/topogen.py	12;"	class
 TopologyAPI	./ctrlr/ryu/app/rest_topology.py	48;"	class
 TopologyChangeNotificationBPDUs	./ctrlr/ryu/lib/packet/bpdu.py	386;"	class
 TopologyClient	./ctrlr/ryu/tests/bin/ryu-client	26;"	namespace
 TopologyController	./ctrlr/ryu/app/rest_topology.py	60;"	class
 topology_change_notify	./ctrlr/ryu/lib/stplib.py	665;"	member	class:Bridge
+topos	./ctrlr/topogen.py	69;"	variable
 topo_api	./ctrlr/ryu/services/protocols/vrrp/utils.py	20;"	namespace
 topo_api	./ctrlr/ryu/tests/integrated/test_vrrp_multi.py	89;"	namespace
 topo_event	./ctrlr/ryu/tests/integrated/test_vrrp_multi.py	88;"	namespace
@@ -19153,6 +19173,9 @@ TYPE_SHUTDOWN	./ctrlr/ryu/lib/packet/sctp.py	32;"	variable
 TYPE_SHUTDOWN_ACK	./ctrlr/ryu/lib/packet/sctp.py	33;"	variable
 TYPE_SHUTDOWN_COMPLETE	./ctrlr/ryu/lib/packet/sctp.py	39;"	variable
 TYPE_TOPOLOGY_CHANGE_BPDU	./ctrlr/ryu/lib/packet/bpdu.py	144;"	variable
+t_opt	./ctrlr/ryu/cfg.py	80;"	variable
+t_opt	./ctrlr/ryu/cfg.py	83;"	variable
+t_opt	./ctrlr/ryu/cfg.py	86;"	variable
 u	./ctrlr/html/d3.v3.min.js	1;"	function	function:i
 u	./ctrlr/html/d3.v3.min.js	1;"	function	function:r
 u	./ctrlr/html/d3.v3.min.js	2;"	function	function:nu.ru
@@ -19374,7 +19397,7 @@ util	./ctrlr/ryu/tests/unit/lib/test_ofctl_utils.py	28;"	variable	class:Test_ofc
 utils	./ctrlr/ryu/base/app_manager.py	34;"	namespace
 utils	./ctrlr/ryu/cmd/ryu_base.py	22;"	namespace
 utils	./ctrlr/ryu/controller/ofp_event.py	25;"	namespace
-utils	./ctrlr/ryu/controller/ofp_handler.py	31;"	namespace
+utils	./ctrlr/ryu/controller/ofp_handler.py	32;"	namespace
 utils	./ctrlr/ryu/lib/packet/packet.py	25;"	namespace
 utils	./ctrlr/ryu/ofproto/nx_actions.py	21;"	namespace
 utils	./ctrlr/ryu/ofproto/ofproto_parser.py	26;"	namespace
@@ -20074,7 +20097,7 @@ ws.onmessage	./ctrlr/ryu/app/gui_topology/html/ryu.topology.js	15;"	class
 wsgi	./ctrlr/ryu/base/app_manager.py	35;"	namespace
 wsgi	./ctrlr/ryu/cmd/manager.py	30;"	namespace
 wsgi	./ctrlr/ryu/lib/hub.py	34;"	namespace
-WSGIApplication	./ctrlr/ex.py	32;"	namespace
+WSGIApplication	./ctrlr/ex.py	35;"	namespace
 WSGIApplication	./ctrlr/exctrl.py	30;"	namespace
 WSGIApplication	./ctrlr/rt.py	32;"	namespace
 WSGIApplication	./ctrlr/ryu/app/gui_topology/gui_topology.py	33;"	namespace
@@ -20550,7 +20573,7 @@ _construct_peer_up_notification	./ctrlr/ryu/services/protocols/bgp/bmp.py	100;"	
 _construct_route_monitoring	./ctrlr/ryu/services/protocols/bgp/bmp.py	176;"	member	class:BMPClient
 _construct_update	./ctrlr/ryu/services/protocols/bgp/bmp.py	156;"	member	class:BMPClient
 _construct_update	./ctrlr/ryu/services/protocols/bgp/peer.py	958;"	member	class:Peer
-_CONTEXTS	./ctrlr/ex.py	42;"	variable	class:exapp
+_CONTEXTS	./ctrlr/ex.py	45;"	variable	class:exapp
 _CONTEXTS	./ctrlr/exctrl.py	39;"	variable	class:exapp
 _CONTEXTS	./ctrlr/rt.py	42;"	variable	class:exapp
 _CONTEXTS	./ctrlr/ryu/app/gui_topology/gui_topology.py	42;"	variable	class:GUIServerApp
@@ -21026,7 +21049,7 @@ _HDR_PACK_STR	./ctrlr/ryu/lib/packet/bgp.py	3525;"	variable	class:BGPMessage
 _HDR_PACK_STR	./ctrlr/ryu/lib/packet/bmp.py	123;"	variable	class:BMPMessage
 _HDR_PACK_STR	./ctrlr/ryu/lib/packet/ospf.py	129;"	variable	class:LSAHeader
 _HDR_PACK_STR	./ctrlr/ryu/lib/packet/ospf.py	646;"	variable	class:OSPFMessage
-_hello_failed	./ctrlr/ryu/controller/ofp_handler.py	63;"	member	class:OFPHandler
+_hello_failed	./ctrlr/ryu/controller/ofp_handler.py	64;"	member	class:OFPHandler
 _HLEN_PACK_LEN	./ctrlr/ryu/lib/packet/slow.py	379;"	variable	class:lacp
 _HLEN_PACK_STR	./ctrlr/ryu/lib/packet/slow.py	378;"	variable	class:lacp
 _HLEN_UNPACK_LEN	./ctrlr/ryu/lib/packet/dhcp.py	138;"	variable	class:dhcp
@@ -21507,7 +21530,7 @@ _packet_in_filter	./ctrlr/ryu/lib/ofp_pktinfilter.py	27;"	function	function:pack
 _packet_in_handler	./ctrlr/ryu/app/example_switch_13.py	57;"	member	class:ExampleSwitch13
 _packet_in_handler	./ctrlr/ryu/app/simple_switch.py	53;"	member	class:SimpleSwitch
 _packet_in_handler	./ctrlr/ryu/app/simple_switch_12.py	51;"	member	class:SimpleSwitch12
-_packet_in_handler	./ctrlr/ryu/app/simple_switch_13.py	67;"	member	class:SimpleSwitch13
+_packet_in_handler	./ctrlr/ryu/app/simple_switch_13.py	80;"	member	class:SimpleSwitch13
 _packet_in_handler	./ctrlr/ryu/app/simple_switch_14.py	63;"	member	class:SimpleSwitch14
 _packet_in_handler	./ctrlr/ryu/app/simple_switch_igmp.py	59;"	member	class:SimpleSwitchIgmp
 _packet_in_handler	./ctrlr/ryu/app/simple_switch_igmp_13.py	41;"	member	class:SimpleSwitchIgmp13
@@ -22955,8 +22978,8 @@ __hash__	./ctrlr/ryu/services/protocols/vrrp/event.py	57;"	member	class:VRRPInte
 __hash__	./ctrlr/ryu/services/protocols/vrrp/event.py	81;"	member	class:VRRPInterfaceNetworkDevice	file:
 __hash__	./ctrlr/ryu/topology/switches.py	156;"	member	class:Link	file:
 __hash__	./ctrlr/ryu/topology/switches.py	98;"	member	class:Port	file:
-__init__	./ctrlr/ex.py	45;"	member	class:exapp
-__init__	./ctrlr/ex.py	51;"	member	class:exctrl
+__init__	./ctrlr/ex.py	48;"	member	class:exapp
+__init__	./ctrlr/ex.py	54;"	member	class:exctrl
 __init__	./ctrlr/exctrl.py	41;"	member	class:exapp
 __init__	./ctrlr/exctrl.py	47;"	member	class:exctrl
 __init__	./ctrlr/rt.py	44;"	member	class:exapp
@@ -23013,7 +23036,7 @@ __init__	./ctrlr/ryu/app/rest_vtep.py	385;"	member	class:RestVtep
 __init__	./ctrlr/ryu/app/simple_monitor_13.py	27;"	member	class:SimpleMonitor13
 __init__	./ctrlr/ryu/app/simple_switch.py	35;"	member	class:SimpleSwitch
 __init__	./ctrlr/ryu/app/simple_switch_12.py	29;"	member	class:SimpleSwitch12
-__init__	./ctrlr/ryu/app/simple_switch_13.py	29;"	member	class:SimpleSwitch13
+__init__	./ctrlr/ryu/app/simple_switch_13.py	30;"	member	class:SimpleSwitch13
 __init__	./ctrlr/ryu/app/simple_switch_14.py	29;"	member	class:SimpleSwitch14
 __init__	./ctrlr/ryu/app/simple_switch_igmp.py	31;"	member	class:SimpleSwitchIgmp
 __init__	./ctrlr/ryu/app/simple_switch_igmp_13.py	33;"	member	class:SimpleSwitchIgmp13
@@ -23076,7 +23099,7 @@ __init__	./ctrlr/ryu/controller/network.py	99;"	member	class:EventMacAddress
 __init__	./ctrlr/ryu/controller/ofp_event.py	116;"	member	class:EventOFPStateChange
 __init__	./ctrlr/ryu/controller/ofp_event.py	137;"	member	class:EventOFPPortStateChange
 __init__	./ctrlr/ryu/controller/ofp_event.py	49;"	member	class:EventOFPMsgBase
-__init__	./ctrlr/ryu/controller/ofp_handler.py	55;"	member	class:OFPHandler
+__init__	./ctrlr/ryu/controller/ofp_handler.py	56;"	member	class:OFPHandler
 __init__	./ctrlr/ryu/controller/tunnels.py	101;"	member	class:EventTunnelPort
 __init__	./ctrlr/ryu/controller/tunnels.py	111;"	member	class:TunnelKeys
 __init__	./ctrlr/ryu/controller/tunnels.py	154;"	member	class:DPIDs
@@ -24342,6 +24365,7 @@ __init__	./ctrlr/ryu/topology/switches.py	287;"	member	class:PortDataState
 __init__	./ctrlr/ryu/topology/switches.py	383;"	member	class:LinkState
 __init__	./ctrlr/ryu/topology/switches.py	521;"	member	class:Switches
 __init__	./ctrlr/ryu/topology/switches.py	61;"	member	class:Port
+__init__	./ctrlr/topogen.py	17;"	member	class:topoEx
 __inv_1and1	./ctrlr/ryu/app/rest_firewall.py	925;"	function	function:Match.to_openflow	file:
 __inv_1and1	./ctrlr/ryu/app/rest_qos.py	968;"	function	function:Match.to_openflow	file:
 __inv_1and2	./ctrlr/ryu/app/rest_firewall.py	928;"	function	function:Match.to_openflow	file:
