@@ -18,7 +18,8 @@
 
 #define def_buffsize 2048
 #define def_namedsize 255
-#define def_packetBuffer 65535
+#define def_packetBuffer 0x80000
+
 
 struct packetBuffer
 {
@@ -83,7 +84,7 @@ unsigned int initSock(char* v_intf,
                       struct sockaddr_ll* v_linksll)
 { 
   unsigned int t_sock=0;
-  t_sock=socket(PF_PACKET,SOCK_RAW,htons(ETH_P_ALL));
+  t_sock=socket(AF_PACKET,SOCK_RAW,htons(ETH_P_ALL));
   if(0>t_sock) 
   {
     perror("socket");
@@ -132,9 +133,9 @@ int recvPacket(unsigned int v_sSock,
   struct ethhdr* t_eth=NULL;
   t_pb->length=0;
   unsigned int t_sllLen=sizeof(struct sockaddr_ll);
-  t_pb->length=recvfrom(v_sSock,&(t_pb->buff),def_buffsize,0,
+  t_pb->length=recvfrom(v_sSock,&(t_pb->buff),def_buffsize,MSG_DONTWAIT,
                     (struct sockaddr*)v_sSll,&t_sllLen);
-  if(t_pb->length>0)
+  if((t_pb->length>=14)&&(t_pb->length!=-1))
   {
     t_eth=(struct ethhdr*)&(t_pb->buff);
     printf("sock[%d]recv(ln:%d\t)-DMAC:%02x:%02x:%02x:%02x:%02x:%02x;\
@@ -196,22 +197,22 @@ int sendPacket(struct packetBuffer* v_pb,
 
 int main(int argc,char **argv)
 {
-  unsigned int delayMs=20;
+  unsigned int delayMs=1;
   struct packetBuffer* pBuff=NULL;
   pBuff=(struct packetBuffer*)malloc(sizeof(struct packetBuffer)
                                     *def_packetBuffer);
   unsigned int putBuffPos=0;
   unsigned int getBuffPos=0;
   
-  int smac1[6]={0,0x11,0x11,0x11,0x11,0x11};
-  char intf1[def_namedsize]="enp0s26f7u2";  
+  int smac1[6]={0x00,0x00,0x22,0x86,0x00,0x10};
+  char intf1[def_namedsize]="eno16777736";  
   struct ifreq t_ethreq1={0};
   struct sockaddr_ll t_sll1={0};
   unsigned int sock1=0;
   struct sockaddr_ll linkSll1={0};
   
-  int smac2[6]={0,0x22,0x22,0x22,0x22,0x22};
-  char intf2[def_namedsize]="enp8s0";
+  int smac2[6]={0x00,0x00,0x22,0x86,0x00,0x10};
+  char intf2[def_namedsize]="eno33554984";
   struct ifreq t_ethreq2={0};
   struct sockaddr_ll t_sll2={0};
   unsigned int sock2=0;
@@ -233,8 +234,8 @@ int main(int argc,char **argv)
   {
     printf("\ncommand notice: intfpass \
 intf1 smac1 intf2 smac2 delayms\nexample: ./intfpass \
-enp0s26f7u2 00:11:11:11:11:11 \
-enp8s0 00:22:22:22:22:22 1\n");
+eno16777736 00:11:11:11:11:11 \
+eno33554984 00:22:22:22:22:22 1\n");
   }
   printf("\nDelay: %ums\n\
 intf1: %16s[smac-%02x:%02x:%02x:%02x:%02x:%02x]\n\
@@ -276,29 +277,3 @@ intf2: %16s[smac-%02x:%02x:%02x:%02x:%02x:%02x]\n\n",
   free(pBuff);
   return(0);
 }
-
-    //if((len1>0)
-      //&&((char)(t_eth1->h_source[0])==(char)(smac1[0]&0xff))
-      //&&((char)(t_eth1->h_source[1])==(char)(smac1[1]&0xff))
-      //&&((char)(t_eth1->h_source[2])==(char)(smac1[2]&0xff))
-      //&&((char)(t_eth1->h_source[3])==(char)(smac1[3]&0xff))
-      //&&((char)(t_eth1->h_source[4])==(char)(smac1[4]&0xff))
-      //&&((char)(t_eth1->h_source[5])==(char)(smac1[5]&0xff)))
-    //{
-      //printf("sock[%d](ln:%d\t)-DMAC:%02x:%02x:%02x:%02x:%02x:%02x; SMAC:%02x:%02x:%02x:%02x:%02x:%02x\n",sock1,len1,t_eth1->h_dest[0],t_eth1->h_dest[1],t_eth1->h_dest[2],t_eth1->h_dest[3],t_eth1->h_dest[4],t_eth1->h_dest[5],t_eth1->h_source[0],t_eth1->h_source[1],t_eth1->h_source[2],t_eth1->h_source[3],t_eth1->h_source[4],t_eth1->h_source[5]);
-      
-      //len1=sendPacket(sock2,buffer1,len1,&t_sll2);
-        
-    //}
-    //if((len2>0)
-    //&&((char)(t_eth2->h_source[0])==(char)(smac2[0]&0xff))
-    //&&((char)(t_eth2->h_source[1])==(char)(smac2[1]&0xff))
-    //&&((char)(t_eth2->h_source[2])==(char)(smac2[2]&0xff))
-    //&&((char)(t_eth2->h_source[3])==(char)(smac2[3]&0xff))
-    //&&((char)(t_eth2->h_source[4])==(char)(smac2[4]&0xff))
-    //&&((char)(t_eth2->h_source[5])==(char)(smac2[5]&0xff)))
-    //{
-      //printf("sock[%d](ln:%d\t)-DMAC:%02x:%02x:%02x:%02x:%02x:%02x; SMAC:%02x:%02x:%02x:%02x:%02x:%02x\n",sock2,len2,t_eth2->h_dest[0],t_eth2->h_dest[1],t_eth2->h_dest[2],t_eth2->h_dest[3],t_eth2->h_dest[4],t_eth2->h_dest[5],t_eth2->h_source[0],t_eth2->h_source[1],t_eth2->h_source[2],t_eth2->h_source[3],t_eth2->h_source[4],t_eth2->h_source[5]);
-      //len2=sendPacket(sock1,buffer2,len2,&t_sll1);
-      //printf("%d->%d send %d\t  %02x %02x %02x %02x %02x %02x %02x %02x\n",sock2,sock1,len2,buffer2[12]&0xff,buffer2[13]&0xff,buffer2[14]&0xff,buffer2[15]&0xff,buffer2[16]&0xff,buffer2[17]&0xff,buffer2[18]&0xff,buffer2[19]&0xff);
-    //}
