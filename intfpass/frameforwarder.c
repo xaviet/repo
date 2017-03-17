@@ -24,13 +24,14 @@
 
 //  macro define
 
-#define DEF_namedSize 16
-#define DEF_frameBufferSize 2048
+#define DEF_namedSize 64
+#define DEF_frameSize 1518
 #define DEF_frameBUfferVolum 0x10000
 #define DEF_timeAccurSec 0
 #define DEF_timeAccurUSec 1000
 #define DEF_1stNIC "eno16777736"
 #define DEF_2ndNIC "eno33554984"
+#define DEF_delayTime 50
 
 //  struct
 
@@ -45,7 +46,7 @@ struct s_frameInfo
 {
   struct s_ethernetSocket* mp_sSocket;
   struct s_ethernetSocket* mp_dSocket;
-  char m_buff[DEF_frameBufferSize];
+  char m_buff[DEF_frameSize];
   int m_length;
   long long m_timerCount;
   struct timeval m_rxTimeStamp;
@@ -93,11 +94,9 @@ int memDisp(char* vp_buffer,int v_length)
   return(0);
 }
 
-struct timeval getTime()
+void getTime(struct timeval* vp_time)
 {
-  struct timeval t_time={0};
-  gettimeofday(&t_time,NULL);
-  return(t_time);
+  gettimeofday(vp_time,NULL);
 }
 
 void sigintHandler(int v_signalId)
@@ -123,7 +122,7 @@ void signalTimerHandler()
 
 struct s_frameInfo* putBuff(struct s_frameInfo* vp_buff,int* vp_putBuffPos,int* vp_getBuffPos)
 {
-  int t_pos=*vp_putBuffPos;
+  struct s_frameInfo* tp_buff=vp_buff+*vp_putBuffPos;
   if(((*vp_putBuffPos)<((*vp_getBuffPos)-1))||(((*vp_putBuffPos)>=(*vp_getBuffPos))&&((*vp_putBuffPos)<(DEF_frameBUfferVolum-1))))
   {
     (*vp_putBuffPos)++;
@@ -137,12 +136,12 @@ struct s_frameInfo* putBuff(struct s_frameInfo* vp_buff,int* vp_putBuffPos,int* 
     perror("APP: Failed to put buffer -> exit");
     exit(1);
   }
-  return(vp_buff+t_pos);
+  return(tp_buff);
 }
 
 struct s_frameInfo* getBuff(struct s_frameInfo* vp_buff,int* vp_putBuffPos,int* vp_getBuffPos)
 {
-  int t_pos=*vp_getBuffPos;
+  struct s_frameInfo* tp_buff=vp_buff+*vp_getBuffPos;
   if(((*vp_getBuffPos)<((*vp_putBuffPos)-1))||(((*vp_getBuffPos)>(*vp_putBuffPos))&&((*vp_getBuffPos)<(DEF_frameBUfferVolum-1))))
   {
     (*vp_getBuffPos)++;
@@ -153,9 +152,9 @@ struct s_frameInfo* getBuff(struct s_frameInfo* vp_buff,int* vp_putBuffPos,int* 
   }
   else
   {
-    return(NULL);
+    tp_buff=NULL;
   }
-  return(vp_buff+t_pos);
+  return(tp_buff);
 }
 
 void undoBuff(int* vp_buffPos)
@@ -221,7 +220,7 @@ int createFrameBUffer()
   gp_frameBuffer->m_timerCount=0;
   gp_frameBuffer->m_getBuffPos=0;
   gp_frameBuffer->m_putBuffPos=0;
-  gp_frameBuffer->m_dealyTime=1;
+  gp_frameBuffer->m_dealyTime=DEF_delayTime;
   return(0);
 }
 
@@ -244,19 +243,8 @@ int receiveData(struct s_ethernetSocket* vp_socket,char* vp_buffer,int v_length)
 
 void printBuffInfo(struct s_frameBuffer* vp_frameBuffer,struct s_frameInfo* vp_buffer,int v_rx0OrTx1)
 {
-  struct timeval* tp_timeStamp;
-  char t_ch=0;
-  if(v_rx0OrTx1==0)
-  {
-    tp_timeStamp=&(vp_buffer->m_rxTimeStamp);
-    t_ch='R';
-  }
-  else
-  {
-    tp_timeStamp=&(vp_buffer->m_txTimeStamp);
-    t_ch='T';
-  }
-  printf("**[%012ld.%-6ld] %1d->%1d %cx %4d byte putpos %-7d getpos %-7d",tp_timeStamp->tv_sec,tp_timeStamp->tv_usec,vp_buffer->mp_sSocket->m_rawSocket,vp_buffer->mp_dSocket->m_rawSocket,t_ch,vp_buffer->m_length,vp_frameBuffer->m_putBuffPos,vp_frameBuffer->m_getBuffPos);
+  char t_ch=(v_rx0OrTx1==0)?'R':'T';
+  printf("[%010ld.%-6ld]->[%010ld.%-6ld] %1d->%1d %cx %4dbyte putpos %-7d getpos %-7d",vp_buffer->m_rxTimeStamp.tv_sec,vp_buffer->m_rxTimeStamp.tv_usec,vp_buffer->m_txTimeStamp.tv_sec,vp_buffer->m_txTimeStamp.tv_usec,vp_buffer->mp_sSocket->m_rawSocket,vp_buffer->mp_dSocket->m_rawSocket,t_ch,vp_buffer->m_length,vp_frameBuffer->m_putBuffPos,vp_frameBuffer->m_getBuffPos);
   memDisp(vp_buffer->m_buff,0xe);
   printf("\n");  
 }
@@ -266,10 +254,11 @@ void frameReceive(struct s_ethernetSocket* vp_socket,struct s_frameBuffer* vp_fr
   struct s_frameInfo* tp_buffer=NULL;
   int t_len=0;
   tp_buffer=putBuff(vp_frameBuffer->m_frameInfoList,&(vp_frameBuffer->m_putBuffPos),&(vp_frameBuffer->m_getBuffPos));
-  t_len=receiveData(vp_socket,tp_buffer->m_buff,DEF_frameBufferSize);
+  t_len=receiveData(vp_socket,tp_buffer->m_buff,DEF_frameSize);
   if(t_len>0)
   {
-    tp_buffer->m_rxTimeStamp=getTime();
+    getTime(&(tp_buffer->m_rxTimeStamp));
+    memset(&(tp_buffer->m_txTimeStamp),0,sizeof(struct timeval));
     tp_buffer->m_timerCount=vp_frameBuffer->m_timerCount;
     tp_buffer->m_length=t_len;
     tp_buffer->mp_sSocket=vp_socket;
@@ -296,7 +285,7 @@ void frameRx(struct s_ethernetSocket* vp_socket,struct s_frameBuffer* vp_frameBu
     pthread_mutex_lock(&(vp_frameBuffer->m_threadAccessing));
     frameReceive(vp_socket,vp_frameBuffer);
     pthread_mutex_unlock(&(vp_frameBuffer->m_threadAccessing));
-    usleep(0);
+    //usleep(0);
   }
 }
 
@@ -318,8 +307,8 @@ void frameSend(struct s_frameBuffer* vp_frameBuffer)
   {
     if(vp_frameBuffer->m_timerCount>=(tp_buffer->m_timerCount+vp_frameBuffer->m_dealyTime))
     {
+      getTime(&(tp_buffer->m_txTimeStamp));
       sendto(tp_buffer->mp_dSocket->m_rawSocket,tp_buffer->m_buff,tp_buffer->m_length,0,(struct sockaddr*)&(tp_buffer->mp_dSocket->m_socketAddress),sizeof(tp_buffer->mp_dSocket->m_socketAddress));
-      tp_buffer->m_txTimeStamp=getTime();
       printBuffInfo(vp_frameBuffer,tp_buffer,1);
     }
     else
@@ -336,7 +325,7 @@ void frameTx(struct s_frameBuffer* vp_frameBuffer)
     pthread_mutex_lock(&(vp_frameBuffer->m_threadAccessing));
     frameSend(vp_frameBuffer);
     pthread_mutex_unlock(&(vp_frameBuffer->m_threadAccessing));
-    usleep(0);
+    //usleep(0);
   }
 }
 
@@ -355,8 +344,21 @@ int createThread(void* vp_function,struct s_frameBuffer* vp_frameBuffer)
 int main(int argc, char** argv)
 {
   createFrameBUffer(); 
-  gp_frameBuffer->mp_1stSocket=createSocket(gp_frameBuffer->m_1stNicName,DEF_1stNIC,NULL);
-  gp_frameBuffer->mp_2ndSocket=createSocket(gp_frameBuffer->m_2ndNicName,DEF_2ndNIC,NULL);
+  printf("\nusage: firstNIC secondNIC dealyTime(ms)\nexample: ./frameforwarder eth0 eth1 10\n");
+  if(argc>3)
+  {
+    gp_frameBuffer->mp_1stSocket=createSocket(gp_frameBuffer->m_1stNicName,argv[1],NULL);
+    gp_frameBuffer->mp_2ndSocket=createSocket(gp_frameBuffer->m_2ndNicName,argv[2],NULL);
+    sscanf(argv[3],"%u",&(gp_frameBuffer->m_dealyTime));
+  }
+  else
+  {
+    gp_frameBuffer->mp_1stSocket=createSocket(gp_frameBuffer->m_1stNicName,DEF_1stNIC,NULL);
+    gp_frameBuffer->mp_2ndSocket=createSocket(gp_frameBuffer->m_2ndNicName,DEF_2ndNIC,NULL);
+    gp_frameBuffer->m_dealyTime=DEF_delayTime;
+  }
+  printf("\nrunning:\n\t1stNIC: %-16s 2ndNIC: %-16s delayTime: %-4dms\n\n",gp_frameBuffer->m_1stNicName,gp_frameBuffer->m_2ndNicName, gp_frameBuffer->m_dealyTime);
+  sleep(2);
   pthread_mutex_init(&(gp_frameBuffer->m_threadAccessing),NULL);
   createThread(frameRxForm1stNIC,gp_frameBuffer);
   createThread(frameRxForm2ndNIC,gp_frameBuffer);
