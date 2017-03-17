@@ -199,6 +199,8 @@ struct s_ethernetSocket* createSocket(char* vp_buffNICName,char* v_nic,uint8_t* 
   strcpy(vp_buffNICName,v_nic);
   t_socket->m_socketAddress.sll_family=PF_PACKET;
   t_socket->m_socketAddress.sll_protocol=htons(ETH_P_IP);
+  //t_socket->m_socketAddress.sll_protocol=htons(ETH_P_ALL);
+  //t_socket->m_socketAddress.sll_protocol=htons(0x0806);
   t_socket->m_socketAddress.sll_ifindex=getInterfaceIndex(t_socket->m_rawSocket,v_nic);
   t_socket->m_socketAddress.sll_hatype=ARPHRD_ETHER;
   t_socket->m_socketAddress.sll_pkttype=PACKET_OTHERHOST;
@@ -227,7 +229,7 @@ int createFrameBUffer()
 int receiveData(struct s_ethernetSocket* vp_socket,char* vp_buffer,int v_length)
 {
   if(vp_socket->m_isBind==false) 
-  {
+  {// raw socket must be binded,else the frame be duplicate
     if(bind(vp_socket->m_rawSocket,(struct sockaddr*)&vp_socket->m_socketAddress,sizeof(vp_socket->m_socketAddress))==0)
     {
       vp_socket->m_isBind = true;
