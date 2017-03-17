@@ -119,7 +119,6 @@ void signalTimerHandler()
     ++gp_frameBuffer->m_timerCount;  
 }
 
-
 struct s_frameInfo* putBuff(struct s_frameInfo* vp_buff,int* vp_putBuffPos,int* vp_getBuffPos)
 {
   struct s_frameInfo* tp_buff=vp_buff+*vp_putBuffPos;
