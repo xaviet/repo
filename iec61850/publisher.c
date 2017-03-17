@@ -281,6 +281,7 @@ void prepareGooseBuffer(struct s_goosePublisher* vp_gooseData)
   vp_gooseData->mp_buffer[bufPos++]=0x00;
   vp_gooseData->mp_buffer[bufPos++]=0x00;
   vp_gooseData->m_payloadStart=bufPos;
+  memDisp(vp_gooseData->mp_buffer,DEF_maxFrameLen);
 }
 
 int createThread(void* vp_function,struct s_appData* vp_appData)
@@ -297,9 +298,11 @@ int main(int argc,char** argv)
 {
   createAppData(DEF_NIC);
   createSignal();
+  struct s_goosePublisher vp_gooseData={0}; 
+  vp_gooseData.mp_appData=gp_appData; 
+  prepareGooseBuffer(&vp_gooseData);
   while(gp_appData->m_running) 
   {
-    
     sleep(1);
   }
   return(0);
