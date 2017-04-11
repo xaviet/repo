@@ -99,7 +99,7 @@ void getTime(struct timeval* vp_time)
   gettimeofday(vp_time,NULL);
 }
 
-void sigintHandler(int v_signalId)
+void sigintHandler()
 {
     gp_frameBuffer->m_running=0;
 }
@@ -272,6 +272,8 @@ void frameReceive(struct s_ethernetSocket* vp_socket,struct s_frameBuffer* vp_fr
       tp_buffer->mp_dSocket=vp_frameBuffer->mp_1stSocket;
     }
     printBuffInfo(vp_frameBuffer,tp_buffer,0);
+    memDisp(tp_buffer->m_buff,t_len);
+    pause();
   }
   else
   {
