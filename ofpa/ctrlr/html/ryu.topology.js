@@ -1,7 +1,7 @@
 var CONF = {
     image: {
-        width: 32,
-        height: 32
+        width: 36,
+        height: 36
     },
     force: {
         width: 1024,
@@ -99,7 +99,7 @@ elem.update = function () {
     nodeEnter.append("text")
         .attr("dx", -CONF.image.width/2)
         .attr("dy", CONF.image.height-10)
-        .text(function(d) { return "dpid: " + trim_zero(d.dpid); });
+        .text(function(d) { return "" + trim_zero(d.dpid); });
 
     var ports = topo.get_ports();
     this.port.remove();
