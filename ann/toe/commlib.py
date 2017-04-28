@@ -23,6 +23,7 @@ import poplib
 import sqlite3
 import sys
 import smtplib
+<<<<<<< HEAD
 import email.mime.multipart  
 import email.mime.text
 
@@ -43,6 +44,18 @@ def detectCharSet(v_data):
     return member in ['utf-8','unicode','gb2312','gbk','gb18030','big5','us-ascii','unknow']
   '''
   t_types=['utf-8','unicode','gb2312','gbk','gb18030','big5','us-ascii','unknow']
+=======
+import email
+import email.mime.multipart  
+import email.mime.text
+
+def detectCharSet(v_data):
+  '''
+    detect character set
+    return member in ['utf-8','unicode','gb2312','gbk','gb18030','big5','unknow']
+  '''
+  t_types=['utf-8','unicode','gb2312','gbk','gb18030','big5','unknow']
+>>>>>>> 5386a657a90b4c82e7c1c83e691e2ec51717783e
   for t_codetype in t_types:
     try:
       v_data.decode(t_codetype)
@@ -109,13 +122,18 @@ def mbTx(v_mbFrom,v_mbTo,v_subject,v_content,v_pp):
   t_smtp.sendmail(v_mbFrom,v_mbTo,str(t_mb))
   t_smtp.quit()
 
+<<<<<<< HEAD
 def mbRx(v_mb,v_pp,v_keyString):
+=======
+def mbRx(v_mb,v_pp):
+>>>>>>> 5386a657a90b4c82e7c1c83e691e2ec51717783e
   '''
     mb rx
   '''
   t_mb=poplib.POP3(getRxUrl())
   t_mb.user(v_mb)
   t_mb.pass_(v_pp)
+<<<<<<< HEAD
   t_mNumber=t_mb.stat()
   t_rt=[]
   t_contentFlag=False
@@ -134,6 +152,18 @@ def mbRx(v_mb,v_pp,v_keyString):
     t_mb.dele(i)
   t_mb.quit()
   return(t_rt)
+=======
+  ret=mailServer.stat()
+   
+  print(ret)
+
+  for i in range(1,ret[0]+1):
+    mlist=mailServer.top(i,1)
+    print(mlist)
+
+  #mailServer.dele(1)
+  mailServer.quit()
+>>>>>>> 5386a657a90b4c82e7c1c83e691e2ec51717783e
 
 def msg(v_msg,v_rollmode=False,v_newlinemode=False):
   '''
@@ -175,12 +205,29 @@ def sqliteOptBatch(v_db,v_opt):
   t_dbCon.close()
   return(0)
   
+<<<<<<< HEAD
 @spentTime
 def _test_():
   pass
   mbTx(getMbInner(),getMbOuter(),'test ready','adfasf\nadfasdfasdf\nc/s server 0\nhello!\npi\nfrom getMbInner %s\nc/s server 1\nadfasdfaf\nasdffff'%(getMbInner(),),getPp())
   time.sleep(10)
   print(mbRx(getMbOuter(),getPp(),'server'))
+=======
+def spentTime(v_fun):
+  '''
+    decorator spentTime
+  '''
+  def t_decoratorfun(*v_para):
+    t_starttime=time.time()
+    t_rt=v_fun(*v_para)
+    logging.debug('spentTime: '+'%5.6f'%((time.time()-t_starttime),)+' s.')
+    return(t_rt)
+  return(t_decoratorfun)
+
+@spentTime
+def _test_():
+  pass
+>>>>>>> 5386a657a90b4c82e7c1c83e691e2ec51717783e
   
 if(__name__=='__main__'):
   _test_()

@@ -11,6 +11,7 @@
   by Pioevh@163.com 2010427
 '''
 
+<<<<<<< HEAD
 from commlib import *
 
 def mbSend(v_content):
@@ -21,3 +22,9 @@ def main():
   
 if(__name__=='__main__'):
   main()
+=======
+import commlib
+
+if(__name__=='__main__'):
+  commlib._test_()
+>>>>>>> 5386a657a90b4c82e7c1c83e691e2ec51717783e
