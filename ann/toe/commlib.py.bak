@@ -178,7 +178,7 @@ def sqliteOptBatch(v_db,v_opt):
 @spentTime
 def _test_():
   pass
-  mbTx(getMbInner(),getMbOuter(),'pioevh\'s operation','\nc/s server 0\n%s\nc/s server 1\n'%('ioc > ios',),getPp())
+  mbTx(getMbInner(),getMbOuter(),'test ready','\nc/s server 0\n%s\nc/s server 1\n'%(v_content,),getPp())
   
 if(__name__=='__main__'):
   _test_()

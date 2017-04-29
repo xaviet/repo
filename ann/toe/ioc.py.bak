@@ -7,18 +7,19 @@
 # t_    temporary value
 
 '''
-  ios.py
+  ioc.py
   by Pioevh@163.com 2010427
 '''
 
 from commlib import *
 
 def mbSend(v_content):
-  mbTx(getMbInner(),getMbOuter(),'pioevh\'s operation','\nc/s server 0\n%s\nc/s server 1\n'%(v_content,),getPp())
-
+  mbTx(getMbOuter(),getMbInner(),'pioevh\'s operation','\nc/s server 0\n%s\nc/s server 1\n'%(v_content,),getPp())
+  
 def main():
-  mbSend('ios > ioc')
-  print(mbRx(getMbInner(),getPp(),'client'))
+  mbSend('ioc > ios')
+  print(mbRx(getMbOuter(),getPp(),'server'))
   
 if(__name__=='__main__'):
   main()
+
