@@ -17,8 +17,12 @@ def mbSend(v_content):
   mbTx(getMbOuter(),getMbInner(),'pioevh\'s operation','\nc/s client 0\n%s\nc/s client 1\n'%(v_content,),getPp())
   
 def main():
-  mbSend('ioc > ios')
-  print(mbRx(getMbOuter(),getPp(),'server'))
+  mbSend('ls -la\nfree')
+  mbSend('uname -a\nps aux|grep python3')
+  t_rt=mbRx(getMbOuter(),getPp(),'server')
+  for t_el0 in t_rt:
+    for t_el1 in t_el0:
+      print(t_el1)
   
 if(__name__=='__main__'):
   main()

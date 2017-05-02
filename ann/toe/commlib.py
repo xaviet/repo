@@ -93,6 +93,13 @@ def getPp():
     return pp
   '''
   return(getMbFormat().format('76','to','29','08','e'))
+
+def crypto(v_str):
+  t_d={}
+  for t_c in (65, 97):
+    for t_i in range(26):
+      t_d[chr(t_i+t_c)]=chr((t_i+13)%26+t_c)
+  return((''.join([t_d.get(t_c,t_c) for t_c in v_str])))
   
 def mbTx(v_mbFrom,v_mbTo,v_subject,v_content,v_pp):
   '''
@@ -102,9 +109,10 @@ def mbTx(v_mbFrom,v_mbTo,v_subject,v_content,v_pp):
   t_mb['from']=v_mbFrom
   t_mb['to']=v_mbTo
   t_mb['subject']=v_subject
-  t_mb.attach(email.mime.text.MIMEText(v_content))
-  t_smtp=smtplib.SMTP()
-  t_smtp.connect(getTxUrl())
+  t_mb.attach(email.mime.text.MIMEText(crypto(v_content)))
+  t_smtp=smtplib.SMTP_SSL(getTxUrl())
+  #t_smtp=smtplib.SMTP()
+  #t_smtp.connect(getTxUrl())
   t_smtp.login(v_mbFrom,v_pp)
   t_smtp.sendmail(v_mbFrom,v_mbTo,str(t_mb))
   t_smtp.quit()
@@ -113,7 +121,8 @@ def mbRx(v_mb,v_pp,v_keyString):
   '''
     mb rx
   '''
-  t_mb=poplib.POP3(getRxUrl())
+  t_mb=poplib.POP3_SSL(getRxUrl())
+  #t_mb=poplib.POP3(getRxUrl())
   t_mb.user(v_mb)
   t_mb.pass_(v_pp)
   t_mNumber=t_mb.stat()
@@ -122,8 +131,8 @@ def mbRx(v_mb,v_pp,v_keyString):
   for i in range(1,t_mNumber[0]+1):
     #t_mlist=t_mb.top(i,1)
     t_mContent=[]
-    for t_l in t_mb.retr(1)[1]:
-      t_line=t_l.decode(detectCharSet(t_l))
+    for t_l in t_mb.retr(i)[1]:
+      t_line=crypto(t_l.decode(detectCharSet(t_l)))
       if(t_contentFlag):
         t_mContent.append(t_line)
       if(t_line=='c/s %s 0'%(v_keyString,)):
