@@ -15,7 +15,8 @@ from commlib import *
 
 def mbSend(v_content):
   mbTx(getMbOuter(),getMbInner(),'pioevh\'s operation','\nc/s client 0\n%s\nc/s client 1\n'%(v_content,),getPp())
-  
+
+@spentTime  
 def main():
   mbSend('ls -la\nfree')
   mbSend('uname -a\nps aux|grep python3')

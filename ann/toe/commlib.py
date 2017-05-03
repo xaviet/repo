@@ -144,7 +144,7 @@ def mbRx(v_mb,v_pp,v_keyString):
   t_mb.quit()
   return(t_rt)
 
-def msg(v_msg,v_rollmode=False,v_newlinemode=False):
+def msg(v_msg,v_rollmode=True,v_newlinemode=True):
   '''
     print msg with roll and newline
   '''
