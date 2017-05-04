@@ -18,8 +18,8 @@ def mbSend(v_content):
 
 @spentTime  
 def main():
-  mbSend('ls -la\nfree')
-  mbSend('uname -a\nps aux|grep python3')
+  mbSend('ls -la\ncd /\nuptime')
+  mbSend('uname -a\nps aux|grep python3\nls -la')
   t_rt=mbRx(getMbOuter(),getPp(),'server')
   for t_el0 in t_rt:
     for t_el1 in t_el0:
