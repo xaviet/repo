@@ -1,5 +1,5 @@
-## /usr/bin/python3
-## -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- coding: <encoding name> -*-
 # g_    global value
 # c_    class value
 # v_    parameter value
