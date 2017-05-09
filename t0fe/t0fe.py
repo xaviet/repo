@@ -87,8 +87,8 @@ class panel():
   
   def calc(self,line):
     self.press(line)
-    for j in range(0,2):
-      for i in range(2,-1,-1):
+    for j in range(0,3):
+      for i in range(0,3,1):
         if(line[i]!=0 and line[i]==line[i+1]):
           line[i]*=2
           self.maxValue=line[i] if(line[i]>self.maxValue) else self.maxValue
@@ -187,7 +187,8 @@ def t0fe(auto=False):
   gm.creatPnl()
   while(True):
     pass
-    #print(gm)
+    if(not auto):
+      print(gm)
     #gm.getch()
     ch=autoDetect(copy.deepcopy(gm.el)) if(auto) else gm.getch()
     if(ch!=''):
@@ -196,8 +197,8 @@ def t0fe(auto=False):
       if(ch in ('a','s','d','w')):
         rt=gm.move(ch)
         if(rt!=1):
-          #print(gm)
-          #print('win max=%d total=%s'%(gm.maxValue,str(gm.total),) if(rt==2048) else 'lose max=%d total=%s'%(gm.maxValue,str(gm.total),))
+          print(gm)
+          print('win max=%d total=%s'%(gm.maxValue,str(gm.total),) if(rt==2048) else 'lose max=%d total=%s'%(gm.maxValue,str(gm.total),))
           break
     else:
       time.sleep(1)
@@ -226,5 +227,5 @@ def main(auto=False):
   
 if(__name__==('__main__')):
   pass
-  main(True)
+  main(False)
 
