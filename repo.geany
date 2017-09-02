@@ -20,20 +20,21 @@ indent_mode=3
 [project]
 name=repo.geany
 base_path=/home/pv/Documents/repo
+description=
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=3
-FILE_NAME_0=0;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fofpa%2Fctrlr%2Fexctrl.py;0;2
-FILE_NAME_1=0;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fscraping%2Fex.py;0;2
-FILE_NAME_2=0;Sh;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fshell%2Ftranslate;0;8
-FILE_NAME_3=0;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fperiphery%2Fi2c_mpu6050.py;0;4
+current_page=0
+FILE_NAME_0=898;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fprgrmtrd%2Finfosys%2Fpolicypublicopinion.py;0;2
+FILE_NAME_1=53;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fprgrmtrd%2Finfosys%2Fpublicopinion.csv;0;2
+FILE_NAME_2=1062539;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fprgrmtrd%2Finfosys%2Ftradedata.csv;0;2
+FILE_NAME_3=0;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fprgrmtrd%2Finfosys%2Ftotalvalue.csv;0;2
 
 [VTE]
-last_dir=/home/pv/Documents/repo/periphery
+last_dir=/home/pv/Documents/repo/prgrmtrd/infosys
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
