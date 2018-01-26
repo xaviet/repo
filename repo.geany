@@ -21,6 +21,7 @@ indent_mode=3
 name=repo.geany
 base_path=/home/pv/Documents/repo
 description=
+file_patterns=
 
 [long line marker]
 long_line_behaviour=1
@@ -28,13 +29,10 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=898;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fprgrmtrd%2Finfosys%2Fpolicypublicopinion.py;0;2
-FILE_NAME_1=53;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fprgrmtrd%2Finfosys%2Fpublicopinion.csv;0;2
-FILE_NAME_2=1062539;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fprgrmtrd%2Finfosys%2Ftradedata.csv;0;2
-FILE_NAME_3=0;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fprgrmtrd%2Finfosys%2Ftotalvalue.csv;0;2
+FILE_NAME_0=192;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Ft0fe%2Ft0fe.py;0;2
 
 [VTE]
-last_dir=/home/pv/Documents/repo/prgrmtrd/infosys
+last_dir=/home/pv/Documents/repo/t0fe
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
@@ -43,3 +41,12 @@ ignored_dirs_patterns=.*;CVS;
 ignored_file_patterns=*.o;*.obj;*.a;*.lib;*.so;*.dll;*.lo;*.la;*.class;*.jar;*.pyc;*.mo;*.gmo;
 generate_tag_prefs=0
 external_dirs=
+
+[build-menu]
+EX_00_LB=_Execute
+EX_00_CM=python3 "%f"
+EX_00_WD=
+PythonFT_00_LB=_Compile
+PythonFT_00_CM=python3 -m py_compile "%f"
+PythonFT_00_WD=
+filetypes=Python;

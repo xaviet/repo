@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import mpl_toolkits.mplot3d
-x,y=np.mgrid[-2:2:20j,-2:2:20j]
+x,y=np.mgrid[-2:2:64j,-2:2:64j]
 #z=x*np.exp(-x**2-y**2)
-z=x**y+y**x
+z=x*np.cos(1//x)
 ax=plt.subplot(111,projection='3d')
 ax.plot_surface(x,y,z,rstride=2,cstride=1,cmap=plt.cm.coolwarm,alpha=0.8)
 ax.set_xlabel('x')
