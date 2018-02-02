@@ -28,11 +28,15 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=192;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Ft0fe%2Ft0fe.py;0;2
+current_page=2
+FILE_NAME_0=722504;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fevaluation%2Flinux;0;2
+FILE_NAME_1=209190;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fevaluation%2Fhws5700;0;2
+FILE_NAME_2=77846;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fevaluation%2Fh3cer3108g;0;2
+FILE_NAME_3=503856;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fevaluation%2Fsunos;0;2
+FILE_NAME_4=79198;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Frepo%2Fevaluation%2Fwin7;0;2
 
 [VTE]
-last_dir=/home/pv/Documents/repo/t0fe
+last_dir=/home/pv/Documents/repo/evaluation
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;

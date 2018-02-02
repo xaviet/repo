@@ -10,11 +10,16 @@ from pysnmp.hlapi import *
 
 def test():
   '''
-    '1.3.6.1.6.3.1.1.5.2'
     'SNMPv2-MIB', 'sysDescr', 0
+    1.3
+    IF-MIB
+    1.3.6.1.4.1 = iso.org.dod.internet.private.enterprises
+    1.3.6.1.4.1.2011.2.23.65 
+    1.3.6.1.2.1.25.3.3
+    1.3.6.1.4.1.25506.2.6.1.1.1.1.6 h3c cpu usage
   '''
-  #fd = open('h3cer3108g', 'wt')
-  for (errorIndication, errorStatus, errorIndex, varBinds) in nextCmd(SnmpEngine(), CommunityData('xa', mpModel=0), UdpTransportTarget(('192.168.1.201', 161)), ContextData(), ObjectType(ObjectIdentity('1.2'))):
+  #fd = open('sunos', 'wt')
+  for (errorIndication, errorStatus, errorIndex, varBinds) in nextCmd(SnmpEngine(), CommunityData('xa', mpModel=0), UdpTransportTarget(('192.168.1.1', 161)), ContextData(), ObjectType(ObjectIdentity('1.3.6.1.4.1.25506.2.6.1.1.1.1.6'))):
     if errorIndication:
       print(errorIndication)
       break
@@ -24,7 +29,8 @@ def test():
     else:
       for varBind in varBinds:
         line = ' = '.join([x.prettyPrint() for x in varBind])
-        print(line)
+        if(line.find('IF-MIB') != -12):
+          print(line)
         #fd.write(line+'\n')
   #fd.close()
 
